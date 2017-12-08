@@ -5177,6 +5177,13 @@ react-scripts@1.0.17:
   optionalDependencies:
     fsevents "1.1.2"
 
+react-swipe-component@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-swipe-component/-/react-swipe-component-1.4.0.tgz#67d8af0c7a34c2452673eeb863e8640bb461fd0f"
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.2.0"
+
 react@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"

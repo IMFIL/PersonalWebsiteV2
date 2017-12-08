@@ -13,6 +13,7 @@ import {
 import 'font-awesome/css/font-awesome.min.css';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import MediaQuery from 'react-responsive';
+import Swipe from 'react-swipe-component';
 
 const ReactHighcharts = require('react-highcharts')
 
@@ -59,7 +60,9 @@ class PageContainer extends React.Component {
     this.setState({
       'scrollingState': window.location.pathname === '/home' ? 0 : 220,
       'displayScroll': window.location.pathname === '/home',
-      'path': route
+      'path': route,
+      'mobileScrollingState': 0,
+      'clicked': false
     })
   }
 
@@ -73,7 +76,7 @@ class PageContainer extends React.Component {
 
     else {
       this.setState({
-        'mobileScrollingState': 100,
+        'mobileScrollingState': 'auto',
         'clicked': true
       })
     }
@@ -83,17 +86,16 @@ class PageContainer extends React.Component {
     return (
     <div className='pageContainer'>
       <MediaQuery query="(min-device-width: 1224px)">
-        <MediaQuery query="(min-device-width: 1224px)">
-          <div className='pageContainer' onWheel={this.moveNavBar}>
-            <NavBar width={this.state.scrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
-            <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
-          </div>
-        </MediaQuery>
-      </MediaQuery >
+        <div className='pageContainer' onWheel={this.moveNavBar}>
+          <NavBar width={this.state.scrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
+          <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
+        </div>
+      </MediaQuery>
+
       <MediaQuery query="(max-device-width: 1224px)">
         <div className='pageContainer'>
           <NavBar width={this.state.mobileScrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
-          <Background clicked={this.state.clicked} onClickEvent={this.onMobileClick.bind(this)}/>
+          <Background width={this.state.clicked ? 0 : 'inherit'} clicked={this.state.clicked} onClickEvent={this.onMobileClick.bind(this)}/>
         </div>
       </MediaQuery>
     </div>
@@ -118,7 +120,7 @@ class NavBarItem extends React.Component {
   render () {
     return (
       <div className='navBarItemContainer'>
-        <MediaQuery query="(min-device-width: 1224px)">
+        <MediaQuery minDeviceWidth={1224}>
           <p className='navBarItem' style={{borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
@@ -199,31 +201,33 @@ class ProjectsPath extends React.Component {
       projectComponents.push(<ProjectItem title={projectsItems[i].title} description={projectsItems[i].description} src={projectsItems[i].src} style={projectsItems[i]}/>)
     }
     return (
-      <div className='contentContainer' style={{flexDirection: 'row'}}>
-        <MediaQuery query="(min-device-width: 1224px)">
-          <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
-          <div className='projectContainer'>
-            {projectComponents[this.state.id]}
-          </div>
-          <i class="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
-        </MediaQuery>
+      <Swipe
+        className="contentContainer"
+        onSwipedLeft={this.frontPicture}
+        onSwipedRight={this.backPicture}
+        delta={120}>
+        <div className='contentContainer' style={{flexDirection: 'row'}}>
+          <MediaQuery minDeviceWidth={1224}>
+            <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
+            <div className='projectContainer'>
+              {projectComponents[this.state.id]}
+            </div>
+            <i class="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
+          </MediaQuery>
 
-        <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
-          <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
-          <div className='projectContainer'>
-            {projectComponents[this.state.id]}
-          </div>
-          <i class="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
-        </MediaQuery>
+          <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
+            <div className='projectContainer' style={{width: 450}}>
+              {projectComponents[this.state.id]}
+            </div>
+          </MediaQuery>
 
-        <MediaQuery query="(max-device-width: 500px)">
-          <i class="fa fa-chevron-left" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
-          <div className='projectContainer'>
-            {projectComponents[this.state.id]}
-          </div>
-          <i class="fa fa-chevron-right" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
-        </MediaQuery>
-      </div>
+          <MediaQuery maxDeviceWidth={500}>
+            <div className='projectContainer' style={{width: 250}}>
+              {projectComponents[this.state.id]}
+            </div>
+          </MediaQuery>
+        </div>
+      </Swipe>
     )
   }
 }
@@ -232,7 +236,7 @@ class ProjectItem extends React.Component {
   render() {
     return (
       <div className='projectItemContainer'>
-        <MediaQuery query="(min-device-width: 1224px)">
+        <MediaQuery minDeviceWidth={1224}>
           <div className='projectViewContainer'>
             <span className='projectTitle'>
               {this.props.title}
@@ -249,10 +253,10 @@ class ProjectItem extends React.Component {
         <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
           <div className='projectViewContainer'>
             <span className='projectTitle'>
-              <p style={{fontSize:25, margin: 0}}>{this.props.title}</p>
+              <p style={{fontSize:35, margin: 0}}>{this.props.title}</p>
             </span>
             <span className='projectDescription'>
-              <p style={{fontSize:20, margin: 0}}>{this.props.description}</p>
+              <p style={{fontSize:30, margin: 0}}>{this.props.description}</p>
             </span>
           </div>
           <div className='imageContainer'>
@@ -260,13 +264,13 @@ class ProjectItem extends React.Component {
           </div>
         </MediaQuery>
 
-        <MediaQuery query="(max-device-width: 500px)">
+        <MediaQuery maxDeviceWidth={500}>
           <div className='projectViewContainer'>
             <span className='projectTitle'>
-              <p style={{fontSize:15, margin: 0}}>{this.props.title}</p>
+              <p style={{fontSize:20, margin: 0}}>{this.props.title}</p>
             </span>
             <span className='projectDescription'>
-              <p style={{fontSize:10, margin: 0}}>{this.props.description}</p>
+              <p style={{fontSize:15, margin: 0}}>{this.props.description}</p>
             </span>
           </div>
           <div className='imageContainer'>
@@ -550,26 +554,22 @@ class Background extends React.Component {
 
   render() {
     return (
-      <div className='landingpage'>
+      <div className='landingpage' style={{width:this.props.width}}>
         <MediaQuery minDeviceWidth={1030}>
-          <div className='landingpage'>
             <InformationButtonContainer/>
               <Route exact path='/home' component={HomePath}/>
               <Route exact path='/projects' component={ProjectsPath}/>
               <Route exact path='/me/:type' component={MePath}/>
               <Route exact path='/contact' component={ContactPath}/>
             <ScrollIndicatorContainer displayScroll={this.props.displayScroll} clickEvent={this.props.clickEvent}/>
-          </div>
         </MediaQuery>
 
         <MediaQuery query="(max-device-width: 1224px)">
-          <div className='landingpage'>
             <InformationButtonContainer clicked={this.props.clicked} onClickEvent={this.props.onClickEvent}/>
               <Route exact path='/home'  component={HomePath}/>
               <Route exact path='/projects' component={ProjectsPath}/>
               <Route exact path='/me/:type' component={MePath}/>
               <Route exact path='/contact' component={ContactPath}/>
-          </div>
         </MediaQuery>
       </div>
     )
@@ -606,22 +606,16 @@ class InformationButtonContainer extends React.Component {
   render() {
     return (
       <div className='informationButtonContainer'>
-        <MediaQuery minDeviceWidth={1030}>
-          <span className='informationButton' onClick={this.lauchInfoAlert}>
-            <img className='informationButtonSVG' height={17} src={require('./images/question.svg')}/>
-          </span>
-        </MediaQuery>
+
+        <span className='informationButton' onClick={this.lauchInfoAlert}>
+          <img className='informationButtonSVG' style={{display: this.props.clicked ? 'none' : 'inherit'}} height={17} src={require('./images/question.svg')}/>
+        </span>
+
         <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
-          <span className='informationButton' onClick={this.lauchInfoAlert}>
-            <img className='informationButtonSVG' height={17} src={require('./images/question.svg')}/>
-          </span>
           <i className={this.props.clicked ? 'fa fa-times fa-3x' : "fa fa-bars fa-3x"} aria-hidden="true" style={{position: 'absolute', padding: '10px 0 0 10px', left: 0, color:'white'}} onClick={this.props.onClickEvent}/>
         </MediaQuery>
 
         <MediaQuery query="(max-device-width: 500px)">
-          <span className='informationButton' onClick={this.lauchInfoAlert}>
-            <img className='informationButtonSVG' height={15} src={require('./images/question.svg')}/>
-          </span>
           <i className={this.props.clicked ? 'fa fa-times fa-2x' : "fa fa-bars fa-2x"} aria-hidden="true" style={{position: 'absolute', padding: '10px 0 0 10px', left: 0, color:'white'}} onClick={this.props.onClickEvent}/>
         </MediaQuery>
       </div>

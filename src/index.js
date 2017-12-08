@@ -82,12 +82,20 @@ class PageContainer extends React.Component {
   render () {
     return (
     <div className='pageContainer'>
-
+      <MediaQuery query="(min-device-width: 1224px)">
+        <MediaQuery query="(min-device-width: 1224px)">
+          <div className='pageContainer' onWheel={this.moveNavBar}>
+            <NavBar width={this.state.scrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
+            <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
+          </div>
+        </MediaQuery>
+      </MediaQuery >
+      <MediaQuery query="(max-device-width: 1224px)">
         <div className='pageContainer'>
           <NavBar width={this.state.mobileScrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
           <Background clicked={this.state.clicked} onClickEvent={this.onMobileClick.bind(this)}/>
         </div>
-
+      </MediaQuery>
     </div>
     )
   }

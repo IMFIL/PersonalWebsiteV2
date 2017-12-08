@@ -82,20 +82,12 @@ class PageContainer extends React.Component {
   render () {
     return (
     <div className='pageContainer'>
-      <MediaQuery query="(min-device-width: 1224px)">
-        <MediaQuery query="(min-device-width: 1224px)">
-          <div className='pageContainer' onWheel={this.moveNavBar}>
-            <NavBar width={this.state.scrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
-            <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
-          </div>
-        </MediaQuery>
-      </MediaQuery >
-      <MediaQuery query="(max-device-width: 1224px)">
+
         <div className='pageContainer'>
           <NavBar width={this.state.mobileScrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
           <Background clicked={this.state.clicked} onClickEvent={this.onMobileClick.bind(this)}/>
         </div>
-      </MediaQuery>
+
     </div>
     )
   }
@@ -612,7 +604,7 @@ class InformationButtonContainer extends React.Component {
           </span>
           <i className={this.props.clicked ? 'fa fa-times fa-3x' : "fa fa-bars fa-3x"} aria-hidden="true" style={{position: 'absolute', padding: '10px 0 0 10px', left: 0, color:'white'}} onClick={this.props.onClickEvent}/>
         </MediaQuery>
-        
+
         <MediaQuery query="(max-device-width: 500px)">
           <span className='informationButton' onClick={this.lauchInfoAlert}>
             <img className='informationButtonSVG' height={15} src={require('./images/question.svg')}/>

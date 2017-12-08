@@ -1,0 +1,671 @@
+@font-face {
+    font-family: moon;
+    src: url('Moon_Light.otf');
+}
+
+@font-face {
+    font-family: sanFran;
+    src: url('SanFranciscoDisplay-Ultralight.otf');
+}
+
+@keyframes neonBlue {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+}
+
+@keyframes sliderWidth {
+  0% {
+    background-color: white;
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background: url('../images/turquoiseWay.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+#root {
+  height: 100%;
+  width:100%;
+}
+
+.swal2-content {
+  font-family: sanFran;
+  color: black !important;
+  font-size: 20px !important;
+}
+
+.swal2-title {
+  font-family: sanFran
+}
+
+.infoModal {
+  background-size: cover !important;
+}
+
+.vaporwaveLink:link{
+  text-decoration: underline;
+}
+.vaporwaveLink:visited{
+  color: #545454;
+}
+
+.pageContainer {
+  height: 100%;
+  width: 100%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.pageContainer .navBar {
+  height: calc(100% - 100px);
+  width: 0;
+  background-color: transparent;
+  overflow-x: hidden;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+
+  -webkit-transition: width 0.8s ease-in-out;
+  -moz-transition: width 0.8s ease-in-out;
+  -ms-transition: width 0.8s ease-in-out;
+  -o-transition: width 0.8s ease-in-out;
+  transition: width 0.8s
+}
+
+
+.navBar .navBarItemContainer {
+  white-space: nowrap;
+  margin: 15px;
+}
+
+.navBar .navBarItemContainer .navBarItem {
+  margin: 0;
+  font-family: sanFran;
+  font-size: 20px;
+  color: #E6E6E6;
+  text-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF;
+
+  -webkit-transition: text-shadow 0.2s ease-in-out;
+  -moz-transition: text-shadow 0.2s ease-in-out;
+  -ms-transition: text-shadow 0.2s ease-in-out;
+  -o-transition: text-shadow 0.2s ease-in-out;
+  transition: text-shadow ease-in-out;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.navBar .navBarItemContainer .navBarItem:hover {
+  cursor: pointer;
+  text-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #C495F0, 0 0 17.5px #C495F0, 0 0 20px #C495F0, 0 0 25px #C495F0, 0 0 37.5px #C495F0;
+}
+
+.navBarItem a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0 10px 0 10px;
+}
+
+.navBarItem a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.pageContainer .landingpage {
+  height: 100%;
+  width: 100%;
+}
+
+.informationButtonContainer {
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.informationButtonContainer .informationButton {
+  position: absolute;
+  padding: 10px 10px 0 0;
+  right: 0;
+}
+
+.informationButtonContainer .informationButton :hover {
+  cursor: pointer;
+}
+
+.informationButtonContainer .informationButton .informationButtonSVG {
+  height: 25px;
+}
+
+.contentContainer {
+  width: 100%;
+  height: calc(100% - 100px);
+
+  display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+  flex-direction: column;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+  justify-content: center;
+
+  overflow-y: auto;
+}
+
+.contentContainer .contactContainer {
+  width: 100%;
+  height: 100%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+
+  transition: width 0.5s, height 0.5s;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.contentContainer .contactContainer i {
+  color: #E6E6E6;
+  padding: 0 15px 0 15px;
+}
+
+.contentContainer .projectContainer {
+  width: 700px;
+  height: 100%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.projectContainer .projectItemContainer {
+  width: 100%;
+  min-height: calc(100%/4);
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.projectItemContainer .projectViewContainer {
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.projectViewContainer .projectTitle {
+  font-family: moon;
+  font-size: 35px;
+  color: #E6E6E6;
+}
+
+.projectItemContainer .projectDescription {
+  font-family: sanFran;
+  font-size: 20px;
+  color: #E6E6E6;
+}
+
+.projectItemContainer .imageContainer {
+
+}
+
+.projectItemContainer .projectImage {
+
+}
+
+.contentContainer .aboutMeContainer {
+  width: calc(100% - 100px);
+  height: 100%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: .5em;
+  border: 1px solid white;
+
+  background-color: rgba(255, 255, 255, 0.97);
+}
+.contentContainer .aboutMeDisplayScreen {
+  height: calc(100% - 80px);
+  width: 100%;
+  overflow-y: auto;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.contentContainer .aboutMeFolderNavBar {
+  width: 100%;
+  height: 50px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+
+  align-items: center;
+
+}
+
+.aboutMeFolderNavBar .aboutMeFolderitemContainer {
+  width: 33.33%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+}
+
+.aboutMeFolderitemContainer .folderitem {
+  color: black;
+  font-family: sanFran;
+  font-size: 25px;
+  margin: 0;
+}
+
+.folderitem a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.folderitem a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.aboutMeLifePath .aboutMeLifePath {
+  display: inherit;
+  height: inherit;
+  width:inherit;
+}
+
+.aboutMeLifePath .timeLineContainer {
+  margin: 0 0 90px 0;
+  width: 700px;
+  height: 75px;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutMeLifePath .timeLineTitleAndDescriptionContainer {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.timeLineTitleAndDescriptionContainer .timeLineDescription {
+  font-family: sanFran;
+  width: 500px;
+  height: 50px;
+  padding: 15px 15px 0 15px;
+  margin: 0;
+  font-size: 19px;
+}
+
+.timeLineTitleAndDescriptionContainer .timeLineTitle {
+  font-family: sanFran;
+  font-size: 23px;
+  width: 500px;
+  height: 20px;
+  padding: 15px 15px 15px 15px;
+  margin: 0;
+}
+
+.timeLineContainer .timeLineYearContainer {
+  width:auto;
+  height:auto;
+}
+
+.timeLineYearContainer .timeLineYear {
+  font-family: sanFran;
+  font-size: 19px;
+}
+
+.timeLineYearContainer .timeLineElementContainer {
+  width: fit-content;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.timeLineElementContainer .timeLineElement {
+  cursor: pointer;
+
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+  transition: width 0.5s, height 0.5s;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.timeLineContainer .timeLineLine {
+  width: 35px;
+  height:1px;
+}
+
+.contentContainer .aboutMeWorkPath {
+  display: inherit;
+  flex-direction: column;
+  height: calc(100% - 50px);
+  width:inherit;
+}
+
+.aboutMeWorkPath .resumeLinkContainer {
+  margin: 20px 0 0 0;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.resumeLinkContainer .resumeLinkText {
+  font-family: sanFran;
+  font-size: 12px;
+}
+
+.resumeLinkText .resumeLink {
+  text-decoration: none;
+  color:rgb(37, 218, 227);
+}
+
+.aboutMeWorkPath .workContainer {
+  width: 100%;
+  height: 500px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.workContainer .workImage {
+  border-radius: 0.5em;
+  width: 120px;
+  height: 120px;
+}
+
+.workContainer .workTypeContainer {
+  width: 150px;
+  height: 120px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.workTypeContainer .companyNameText {
+  font-family: sanFran;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.workTypeContainer .companyJobText {
+  font-family: sanFran;
+  font-size: 17px;
+}
+
+.workContainer .workTaskContainer {
+  width: 300px;
+  height: 120px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.workTaskContainer .companyTaskContainer {
+  font-family: sanFran;
+  font-size: 17px;
+}
+
+.aboutMeDisplayScreen .highcharts-title {
+  font-family: sanFran;
+  font-size: 27px !important;
+}
+
+.aboutMeDisplayScreen .highcharts-background {
+  fill: transparent;
+}
+
+.aboutMeDisplayScreen .highcharts-credits {
+  display: none;
+}
+
+.aboutMeDisplayScreen .highcharts-label {
+  font-family: sanFran;
+  font-size: 17px !important;
+}
+
+ .nameDisplay {
+  font-size: 100px;
+  font-family: moon;
+  color: white;
+  margin: 15px 0 0 0;
+  -webkit-animation: neonBlue 2s ease-in-out infinite alternate;
+  -moz-animation: neonBlue 2s ease-in-out infinite alternate;
+  animation: neonBlue 2s ease-in-out infinite alternate;
+}
+
+ .displayAttributes {
+  font-size: 20px;
+  font-family: sanFran;
+  color: #E6E6E6;
+  text-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF;
+  margin: 0 0 0 0;
+}
+
+.scrollIndicatorContainerVisible {
+  height: 50px;
+  width:100%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+
+
+  transition: width 0.5s, height 0.5s;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.scrollIndicatorContainerNotVisible {
+  width:0;
+  height:0;
+
+  transition: width 0.5s, height 0.5s;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.scrollIndicatorContainerVisible :hover{
+  cursor: pointer;
+}
+
+.scrollIndicatorContainerVisible .scrollIndicatorSliderContainer {
+  padding:15px 0 0 0;
+  width: 40px;
+  height: 2px;
+}
+
+.scrollIndicatorContainerVisible .scrollIndicatorSlider {
+  height:100%;
+  border-radius: 10em;
+  -webkit-animation: sliderWidth 2s ease-in-out infinite normal;
+  -moz-animation: sliderWidth 2s ease-in-out infinite normal;
+  animation: sliderWidth 2s ease-in-out infinite normal;
+
+}

@@ -126,14 +126,14 @@ class NavBarItem extends React.Component {
           </p>
         </MediaQuery>
         <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
-          <p className='navBarItem' style={{fontSize: 15, borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
+          <p className='navBarItem' style={{fontSize: 25, borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
             </Link>
           </p>
         </MediaQuery>
         <MediaQuery query="(max-device-width: 500px)">
-          <p className='navBarItem' style={{fontSize: 6,borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
+          <p className='navBarItem' style={{fontSize: 15,borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
             </Link>
@@ -155,14 +155,14 @@ class HomePath extends React.Component {
           </p>
         </MediaQuery>
         <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
-          <p className='nameDisplay' style={{fontSize:70}}>Filip Slatinac</p>
+          <p className='nameDisplay' style={{fontSize:50}}>Filip Slatinac</p>
           <p className='displayAttributes' style={{fontSize:25}}>
             - Insert Typical Software Engineering Student Desicription Here -
           </p>
         </MediaQuery>
         <MediaQuery query="(max-device-width: 500px)">
-          <p className='nameDisplay' style={{fontSize:20}}>Filip Slatinac</p>
-          <p className='displayAttributes' style={{fontSize:8}}>
+          <p className='nameDisplay' style={{fontSize:40}}>Filip Slatinac</p>
+          <p className='displayAttributes' style={{fontSize:10}}>
             - Insert Typical Software Engineering Student Desicription Here -
           </p>
         </MediaQuery>
@@ -606,6 +606,11 @@ class InformationButtonContainer extends React.Component {
   render() {
     return (
       <div className='informationButtonContainer'>
+        <MediaQuery minDeviceWidth={1030}>
+          <span className='informationButton' onClick={this.lauchInfoAlert}>
+            <img className='informationButtonSVG' height={17} src={require('./images/question.svg')}/>
+          </span>
+        </MediaQuery>
         <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
           <span className='informationButton' onClick={this.lauchInfoAlert}>
             <img className='informationButtonSVG' height={17} src={require('./images/question.svg')}/>
@@ -617,7 +622,7 @@ class InformationButtonContainer extends React.Component {
           <span className='informationButton' onClick={this.lauchInfoAlert}>
             <img className='informationButtonSVG' height={15} src={require('./images/question.svg')}/>
           </span>
-          <i className={this.props.clicked ? 'fa fa-times' : "fa fa-bars"} aria-hidden="true" style={{position: 'absolute', padding: '10px 0 0 10px', left: 0, color:'white'}} onClick={this.props.onClickEvent}/>
+          <i className={this.props.clicked ? 'fa fa-times fa-2x' : "fa fa-bars fa-2x"} aria-hidden="true" style={{position: 'absolute', padding: '10px 0 0 10px', left: 0, color:'white'}} onClick={this.props.onClickEvent}/>
         </MediaQuery>
       </div>
     )

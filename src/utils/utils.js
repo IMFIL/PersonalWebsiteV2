@@ -22,9 +22,9 @@ const backgroundUnselected = 'grey'
 const projectTitles = ['Pegasus', 'pettrace', 'CookR', 'BusNow']
 const projectDescriptions = ['Interviewing made simple', 'Lost a loved one? Let us help', 'Infinite recipes at your fingertips', 'Never miss a bus again']
 const projectSrcs = [
-  {'src': require('../images/pegasusPicture.png'), 'styleL': {width: 500, height: 500}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 150, height: 150}},
-  {'src': require('../images/pLostPicture.png'), 'styleL': {width: 600, height: 400}, 'styleM': {width: 400, height: 300}, 'styleS': {width: 150, height: 100}},
-  {'src': require('../images/cookRPicture.png'), 'styleL': {width: 500, height: 500}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 150, height: 150}},
+  {'src': require('../images/pegasusPicture.png'), 'styleL': {width: 500, height: 500}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
+  {'src': require('../images/pLostPicture.png'), 'styleL': {width: 600, height: 400}, 'styleM': {width: 500, height: 300}, 'styleS': {width: 400, height: 200}},
+  {'src': require('../images/cookRPicture.png'), 'styleL': {width: 500, height: 500}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
   {'src': require('../images/busNowPicture.png'), 'styleL': {width: 420, height: 350, paddingTop: 50}, 'styleM': {width: 320, height: 250, paddingTop: 30}, 'styleS': {width: 120, height: 80, paddingTop: 20} }
 ]
 

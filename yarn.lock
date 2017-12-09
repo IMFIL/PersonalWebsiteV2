@@ -5101,6 +5101,10 @@ react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
 
+react-favicon@0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/react-favicon/-/react-favicon-0.0.11.tgz#2c4216ca9003ecf9d8aee4f11e6a20f729577925"
+
 react-highcharts@^15.0.0:
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/react-highcharts/-/react-highcharts-15.0.0.tgz#b3eea96ad6a7f04c3e70827a34e9b1b47d88a2bb"

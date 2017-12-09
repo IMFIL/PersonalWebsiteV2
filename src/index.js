@@ -14,6 +14,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import MediaQuery from 'react-responsive';
 import Swipe from 'react-swipe-component';
+import Favicon from 'react-favicon';
 
 const ReactHighcharts = require('react-highcharts')
 
@@ -77,7 +78,7 @@ class PageContainer extends React.Component {
         </div>
       </MediaQuery>
 
-      <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
+      <MediaQuery minDeviceWidth={500} maxDeviceWidth={1030}>
         <div className='pageContainer' style={{flexDirection: 'column'}}>
           <NavBar flex={this.state.mobileScrollingState} mobile={true} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
           <Background displayScroll={this.state.path === '/projects'}/>
@@ -117,22 +118,18 @@ class NavBarItem extends React.Component {
   render () {
     let blue = '0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF'
     let red = '0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #C495F0, 0 0 17.5px #C495F0, 0 0 20px #C495F0, 0 0 25px #C495F0, 0 0 37.5px #C495F0'
-    let styles = {
-      borderLeft:  this.props.link === this.props.currentRoute ? textShadowClicked : ''
-    }
-
 
 
     return (
       <div className='navBarItemContainer'>
         <MediaQuery minDeviceWidth={1224}>
-          <p className='navBarItem' style={{styles}} onClick={()=>this.props.changeRoute(this.props.link)}>
+          <p className='navBarItem' style={{borderLeft:  this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
             </Link>
           </p>
         </MediaQuery>
-        <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
+        <MediaQuery minDeviceWidth={500} maxDeviceWidth={1030}>
           <p className='navBarItem' style={{fontSize: 25, textShadow: this.props.link === this.props.currentRoute ? red : blue}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
@@ -205,13 +202,19 @@ class ProjectsPath extends React.Component {
     for (let i = 0; i < projectsItems.length; i++) {
       projectComponents.push(<ProjectItem title={projectsItems[i].title} description={projectsItems[i].description} src={projectsItems[i].src} style={projectsItems[i]}/>)
     }
+
+    let styles = {
+      flexDirection: this.props.mobile ? 'column' : 'row',
+      paddingTop: this.props.mobile ? 30 : 0
+    }
+
     return (
       <Swipe
         className="contentContainer"
         onSwipedLeft={this.frontPicture}
         onSwipedRight={this.backPicture}
         delta={120}>
-        <div className="contentContainer" style={{flexDirection: this.props.mobile ? 'column' : 'row'}}>
+        <div className="contentContainer" style={styles}>
           <MediaQuery minDeviceWidth={1224}>
             <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
             <div className='projectContainer'>
@@ -574,7 +577,9 @@ class Background extends React.Component {
             <Route exact path='/projects' render={(props) => (
               <ProjectsPath {...props} mobile={true} />
             )}/>
-            <Route exact path='/me/:type' component={MePath}/>
+            <Route exact path='/me/:type' render={(props) => (
+              <MePath {...props} mobile={true} />
+            )}/>
             <Route exact path='/contact' component={ContactPath}/>
             <ScrollIndicatorContainer displayScroll={this.props.displayScroll}/>
             <InformationButtonContainer mobile={true}/>

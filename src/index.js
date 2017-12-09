@@ -66,36 +66,28 @@ class PageContainer extends React.Component {
     })
   }
 
-  onMobileClick = () => {
-    if (this.state.clicked) {
-      this.setState({
-        'mobileScrollingState': 0,
-        'clicked': false
-      })
-    }
-
-    else {
-      this.setState({
-        'mobileScrollingState': 'auto',
-        'clicked': true
-      })
-    }
-  }
 
   render () {
     return (
     <div className='pageContainer'>
-      <MediaQuery query="(min-device-width: 1224px)">
+      <MediaQuery minDeviceWidth={1224}>
         <div className='pageContainer' onWheel={this.moveNavBar}>
-          <NavBar width={this.state.scrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
+          <NavBar width={this.state.scrollingState} mobile={false} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
           <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
         </div>
       </MediaQuery>
 
-      <MediaQuery query="(max-device-width: 1224px)">
-        <div className='pageContainer'>
-          <NavBar width={this.state.mobileScrollingState} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
-          <Background width={this.state.clicked ? 0 : 'inherit'} clicked={this.state.clicked} onClickEvent={this.onMobileClick.bind(this)}/>
+      <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
+        <div className='pageContainer' style={{flexDirection: 'column'}}>
+          <NavBar flex={this.state.mobileScrollingState} mobile={true} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
+          <Background displayScroll={this.state.path === '/projects'}/>
+        </div>
+      </MediaQuery>
+
+      <MediaQuery maxDeviceWidth={500}>
+        <div className='pageContainer' style={{flexDirection: 'column'}}>
+          <NavBar flex={this.state.mobileScrollingState} mobile={true} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
+          <Background displayScroll={this.state.path === '/projects'}/>
         </div>
       </MediaQuery>
     </div>
@@ -105,12 +97,17 @@ class PageContainer extends React.Component {
 
 class NavBar extends React.Component {
   render () {
+    let styles = {
+        width:this.props.width,
+        borderRight:this.props.width===220 ? '#E6E6E6 1px solid' : 'none'
+      }
+
     return (
-        <div className='navBar' style={{width:this.props.width, borderRight:this.props.width===220 ? '#E6E6E6 1px solid' : 'none'}}>
-          <NavBarItem title='Home' link='/home' currentRoute={this.props.currentRoute} changeRoute={this.props.changeRoute}/>
-          <NavBarItem title='Projects' link='/projects'  currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
-          <NavBarItem title='About Me' link='/me/life'  currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
-          <NavBarItem title='Contact' link='/contact' currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
+        <div className={this.props.mobile ? 'navBarMobile' : 'navBar'} style={styles}>
+          <NavBarItem title='Home' link='/home' mobile={this.props.mobile} currentRoute={this.props.currentRoute} changeRoute={this.props.changeRoute}/>
+          <NavBarItem title='Projects' link='/projects' mobile={this.props.mobile}  currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
+          <NavBarItem title='About Me' link='/me/life'  mobile={this.props.mobile} currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
+          <NavBarItem title='Contact' link='/contact' mobile={this.props.mobile} currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
         </div>
     )
   }
@@ -118,24 +115,32 @@ class NavBar extends React.Component {
 
 class NavBarItem extends React.Component {
   render () {
+    let blue = '0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF'
+    let red = '0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #C495F0, 0 0 17.5px #C495F0, 0 0 20px #C495F0, 0 0 25px #C495F0, 0 0 37.5px #C495F0'
+    let styles = {
+      borderLeft:  this.props.link === this.props.currentRoute ? textShadowClicked : ''
+    }
+
+
+
     return (
       <div className='navBarItemContainer'>
         <MediaQuery minDeviceWidth={1224}>
-          <p className='navBarItem' style={{borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
+          <p className='navBarItem' style={{styles}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
             </Link>
           </p>
         </MediaQuery>
         <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
-          <p className='navBarItem' style={{fontSize: 25, borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
+          <p className='navBarItem' style={{fontSize: 25, textShadow: this.props.link === this.props.currentRoute ? red : blue}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
             </Link>
           </p>
         </MediaQuery>
-        <MediaQuery query="(max-device-width: 500px)">
-          <p className='navBarItem' style={{fontSize: 15,borderLeft: this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
+        <MediaQuery maxDeviceWidth={500}>
+          <p className='navBarItem'  style={{fontSize: 12, textShadow: this.props.link === this.props.currentRoute ? red : blue}} onClick={()=>this.props.changeRoute(this.props.link)}>
             <Link to={this.props.link}>
               {this.props.title}
             </Link>
@@ -184,7 +189,7 @@ class ProjectsPath extends React.Component {
 
   frontPicture = () => {
     this.setState({
-      'id': this.state.id < projectsItems.length ? this.state.id + 1 : this.state.id
+      'id': this.state.id < projectsItems.length - 1 ? this.state.id + 1 : this.state.id
     })
   }
 
@@ -206,7 +211,7 @@ class ProjectsPath extends React.Component {
         onSwipedLeft={this.frontPicture}
         onSwipedRight={this.backPicture}
         delta={120}>
-        <div className='contentContainer' style={{flexDirection: 'row'}}>
+        <div className="contentContainer" style={{flexDirection: this.props.mobile ? 'column' : 'row'}}>
           <MediaQuery minDeviceWidth={1224}>
             <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
             <div className='projectContainer'>
@@ -554,22 +559,25 @@ class Background extends React.Component {
 
   render() {
     return (
-      <div className='landingpage' style={{width:this.props.width}}>
+      <div className='landingpage'>
         <MediaQuery minDeviceWidth={1030}>
             <InformationButtonContainer/>
-              <Route exact path='/home' component={HomePath}/>
-              <Route exact path='/projects' component={ProjectsPath}/>
-              <Route exact path='/me/:type' component={MePath}/>
-              <Route exact path='/contact' component={ContactPath}/>
-            <ScrollIndicatorContainer displayScroll={this.props.displayScroll} clickEvent={this.props.clickEvent}/>
+            <Route exact path='/home' component={HomePath}/>
+            <Route exact path='/projects' component={ProjectsPath}/>
+            <Route exact path='/me/:type' component={MePath}/>
+            <Route exact path='/contact' component={ContactPath}/>
+            <ScrollIndicatorContainer displayScroll={this.props.displayScroll} clickEvent={this.props.clickEvent} mobile={false}/>
         </MediaQuery>
 
         <MediaQuery query="(max-device-width: 1224px)">
-            <InformationButtonContainer clicked={this.props.clicked} onClickEvent={this.props.onClickEvent}/>
-              <Route exact path='/home'  component={HomePath}/>
-              <Route exact path='/projects' component={ProjectsPath}/>
-              <Route exact path='/me/:type' component={MePath}/>
-              <Route exact path='/contact' component={ContactPath}/>
+            <Route exact path='/home'  component={HomePath}/>
+            <Route exact path='/projects' render={(props) => (
+              <ProjectsPath {...props} mobile={true} />
+            )}/>
+            <Route exact path='/me/:type' component={MePath}/>
+            <Route exact path='/contact' component={ContactPath}/>
+            <ScrollIndicatorContainer displayScroll={this.props.displayScroll}/>
+            <InformationButtonContainer mobile={true}/>
         </MediaQuery>
       </div>
     )
@@ -605,19 +613,10 @@ class InformationButtonContainer extends React.Component {
 
   render() {
     return (
-      <div className='informationButtonContainer'>
-
+      <div className='informationButtonContainer' style={{position: this.props.mobile ? 'absolute' : 'relative'}}>
         <span className='informationButton' onClick={this.lauchInfoAlert}>
-          <img className='informationButtonSVG' style={{display: this.props.clicked ? 'none' : 'inherit'}} height={17} src={require('./images/question.svg')}/>
+          <img className='informationButtonSVG' style={{height: this.props.mobile ? 15 : 25}} src={require('./images/question.svg')}/>
         </span>
-
-        <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
-          <i className={this.props.clicked ? 'fa fa-times fa-3x' : "fa fa-bars fa-3x"} aria-hidden="true" style={{position: 'absolute', padding: '10px 0 0 10px', left: 0, color:'white'}} onClick={this.props.onClickEvent}/>
-        </MediaQuery>
-
-        <MediaQuery query="(max-device-width: 500px)">
-          <i className={this.props.clicked ? 'fa fa-times fa-2x' : "fa fa-bars fa-2x"} aria-hidden="true" style={{position: 'absolute', padding: '10px 0 0 10px', left: 0, color:'white'}} onClick={this.props.onClickEvent}/>
-        </MediaQuery>
       </div>
     )
   }

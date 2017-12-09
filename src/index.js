@@ -31,6 +31,10 @@ class PageContainer extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    document.title = "Filip Slatinac";
+  }
+
   expandNavBar = () => {
     this.setState({
       'scrollingState': 220,
@@ -71,6 +75,7 @@ class PageContainer extends React.Component {
   render () {
     return (
     <div className='pageContainer'>
+      <Favicon url={require('./images/favicon.png')}/>
       <MediaQuery minDeviceWidth={1224}>
         <div className='pageContainer' onWheel={this.moveNavBar}>
           <NavBar width={this.state.scrollingState} mobile={false} currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>

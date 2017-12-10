@@ -55,10 +55,19 @@ class PageContainer extends React.Component {
         this.expandNavBar()
       }
 
-      else {
+      else if ( event.nativeEvent.wheelDelta >= 0) {
         this.collapseNavBar()
       }
     }
+  }
+
+  componentDidMount() {
+    const list = ReactDOM.findDOMNode(this.refs.home)
+    list.addEventListener('scroll', this.moveNavBar);
+  }
+componentWillUnmount() {
+    const list = ReactDOM.findDOMNode(this.refs.home)
+    list.removeEventListener('scroll', this.moveNavBar);
   }
 
   changeRoute = (route) => {
@@ -218,7 +227,7 @@ class ProjectsPath extends React.Component {
         className="contentContainer"
         onSwipedLeft={this.frontPicture}
         onSwipedRight={this.backPicture}
-        delta={120}>
+        delta={90}>
         <div className="contentContainer" style={styles}>
           <MediaQuery minDeviceWidth={1224}>
             <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>

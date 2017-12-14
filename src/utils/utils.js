@@ -104,3 +104,60 @@ function calculateLifeEventSizeAndBackground(currentId, id, isLine = false) {
 
 export {infoText, textShadowClicked, LETLA,
     calculateLifeEventSizeAndBackground, projectsItems}
+
+
+    //home
+    // <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
+    //   <p className='nameDisplay' style={{fontSize:50}}>Filip Slatinac</p>
+    //   <p className='displayAttributes' style={{fontSize:25}}>
+    //     - Insert Typical Software Engineering Student Desicription Here -
+    //   </p>
+    // </MediaQuery>
+    // <MediaQuery query="(max-device-width: 500px)">
+    //   <p className='nameDisplay' style={{fontSize:40}}>Filip Slatinac</p>
+    //   <p className='displayAttributes' style={{fontSize:10}}>
+    //     - Insert Typical Software Engineering Student Desicription Here -
+    //   </p>
+    // </MediaQuery>
+
+    //projects, add swipe
+    // <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
+    //   <div className='projectContainer' style={{width: 450}}>
+    //     {projectComponents[this.state.id]}
+    //   </div>
+    // </MediaQuery>
+    //
+    // <MediaQuery maxDeviceWidth={500}>
+    //   <div className='projectContainer' style={{width: 250}}>
+    //     {projectComponents[this.state.id]}
+    //   </div>
+    // </MediaQuery>
+
+    //Project item container
+    // <MediaQuery minDeviceWidth={750} maxDeviceWidth={1030}>
+    //   <div className='projectViewContainer'>
+    //     <span className='projectTitle'>
+    //       <p style={{fontSize:35, margin: 0}}>{this.props.title}</p>
+    //     </span>
+    //     <span className='projectDescription'>
+    //       <p style={{fontSize:30, margin: 0}}>{this.props.description}</p>
+    //     </span>
+    //   </div>
+    //   <div className='imageContainer'>
+    //     <img style={this.props.style.styleM} className='projectImage' src={this.props.src}/>
+    //   </div>
+    // </MediaQuery>
+    //
+    // <MediaQuery maxDeviceWidth={500}>
+    //   <div className='projectViewContainer'>
+    //     <span className='projectTitle'>
+    //       <p style={{fontSize:20, margin: 0}}>{this.props.title}</p>
+    //     </span>
+    //     <span className='projectDescription'>
+    //       <p style={{fontSize:15, margin: 0}}>{this.props.description}</p>
+    //     </span>
+    //   </div>
+    //   <div className='imageContainer'>
+    //     <img style={this.props.style.styleS} className='projectImage' src={this.props.src}/>
+    //   </div>
+    // </MediaQuery>

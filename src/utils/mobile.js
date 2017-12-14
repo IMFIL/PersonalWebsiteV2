@@ -1,137 +1,76 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom';
-import styles from './css/index.css'
-import swal from 'sweetalert2';
+import 'font-awesome/css/font-awesome.min.css';
+import Swipe from 'react-swipe-component';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
+import styles from '../css/mobile.css'
 import {
   infoText,
   textShadowClicked,
   LETLA,
   calculateLifeEventSizeAndBackground,
   projectsItems
-} from './utils/utils.js'
-import 'font-awesome/css/font-awesome.min.css';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
-import MediaQuery from 'react-responsive';
-import Favicon from 'react-favicon';
-import {BackgroundMobile} from './utils/mobile.js'
+} from './utils.js'
+import swal from 'sweetalert2';
 
 const ReactHighcharts = require('react-highcharts')
 
-class PageContainer extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      'scrollingState': window.location.pathname === '/home' ? 0 : 220,
-      'displayScroll': window.location.pathname === '/home',
-      'fixNavBar': window.location.pathname === '/home' ? false : true,
-      'path': window.location.pathname //disgusting but oh well
 
-    }
+
+//send min and max width to background mobile
+
+class BackgroundMobile extends React.Component {
+
+  componentDidMount() {
+    document.body.classList.toggle('mobileBGSetter', true)
   }
 
-  componentDidMount = () => {
-    document.title = "Filip Slatinac";
+  componentWillUnmount() {
+    document.body.classList.remove('mobileBGSetter')
   }
-
-  expandNavBar = () => {
-    this.setState({
-      'scrollingState': 220,
-      'displayScroll': false
-    })
-  }
-
-  collapseNavBar = () => {
-    this.setState({
-      'scrollingState': 0,
-      'displayScroll': true
-    })
-  }
-
-  moveNavBar = (event) => {
-    if (window.location.pathname === '/home') {
-      if (event.nativeEvent.wheelDelta < 0) {
-        this.expandNavBar()
-      }
-
-      else if ( event.nativeEvent.wheelDelta >= 0) {
-        this.collapseNavBar()
-      }
-    }
-  }
-
-  changeRoute = (route) => {
-    this.setState({
-      'scrollingState': window.location.pathname === '/home' ? 0 : 220,
-      'displayScroll': window.location.pathname === '/home',
-      'path': route
-    })
-  }
-
-
   render () {
     return (
-    <div className='pageContainer'>
-      <Favicon url={require('./images/favicon.png')}/>
-      <MediaQuery minDeviceWidth={1030}>
-        <div className='pageContainer' onWheel={this.moveNavBar}>
-          <NavBar width={this.state.scrollingState}  currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
-          <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
-        </div>
-      </MediaQuery>
-
-      <MediaQuery minDeviceWidth={500} maxDeviceWidth={1030}>
-        <BackgroundMobile/>
-      </MediaQuery>
-
-      <MediaQuery maxDeviceWidth={500}>
-        <BackgroundMobile/>
-      </MediaQuery>
-    </div>
-    )
-  }
-}
-
-class NavBar extends React.Component {
-  render () {
-    let styles = {
-        width:this.props.width,
-        // borderRight:this.props.width===220 ? '#E6E6E6 1px solid' : 'none'
-        boxShadow: 'rgba(1, 1, 1, 0.5) 0px 0px 20px 20px'
-      }
-
-    return (
-        <div className='navBar' style={styles}>
-          <NavBarItem title='Home' link='/home' currentRoute={this.props.currentRoute} changeRoute={this.props.changeRoute}/>
-          <NavBarItem title='Projects' link='/projects' currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
-          <NavBarItem title='About Me' link='/me/life'  currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
-          <NavBarItem title='Contact' link='/contact'currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
-        </div>
-    )
-  }
-}
-
-class NavBarItem extends React.Component {
-  render () {
-
-    return (
-      <div className='navBarItemContainer'>
-        <p className='navBarItem' style={{borderLeft:  this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
-          <Link to={this.props.link}>
-            {this.props.title}
-          </Link>
-        </p>
+      <div className='landingpageMobile'>
+        <NavigationBarContainerMobile/>
+        <HomePageMobile/>
       </div>
     )
   }
 }
 
-class HomePath extends React.Component {
+class NavigationBarContainerMobile extends React.Component {
+  lauchInfoAlert = () => {
+    swal({
+      'title': 'Confused ?',
+      'html': infoText,
+      'type': 'question',
+      'confirmButtonColor': '#B87FED',
+      'confirmButtonText': '<i class="fa fa-hand-peace-o"></i>',
+      'focusConfirm': false
+      // 'background': `url(${alertBG}) no-repeat center center fixed`,
+      // 'customClass': 'infoModal'
+  })
+}
+
   render() {
     return (
-      <div className='contentContainer'>
-        <p className='nameDisplay'>Filip Slatinac</p>
-        <p className='displayAttributes'>
+      <div className='navigationBarContainerMobile' style={{position: 'relative'}}>
+        <span className='informationButtonMobile' onClick={this.lauchInfoAlert}>
+          <img className='informationButtonSVGMobile' style={{height: 17}} src={require('../images/question.svg')}/>
+        </span>
+      </div>
+    )
+  }
+}
+class HomePageMobile extends React.Component {
+  render () {
+    // let styles = {
+    //  'wi'
+    // }
+    return (
+      <div className='splashContainerMobile'>
+        <p className='nameDisplayMobile'>Filip Slatinac</p>
+        <p className='displayAttributesMobile'>
           - Insert Typical Software Engineering Student Desicription Here -
         </p>
       </div>
@@ -139,7 +78,7 @@ class HomePath extends React.Component {
   }
 }
 
-class ProjectsPath extends React.Component {
+class ProjectsPathMobile extends React.Component {
 
   constructor(props) {
     super(props)
@@ -164,7 +103,7 @@ class ProjectsPath extends React.Component {
     let projectComponents = []
 
     for (let i = 0; i < projectsItems.length; i++) {
-      projectComponents.push(<ProjectItem title={projectsItems[i].title} description={projectsItems[i].description} src={projectsItems[i].src} style={projectsItems[i]}/>)
+      projectComponents.push(<ProjectItemMobile title={projectsItems[i].title} description={projectsItems[i].description} src={projectsItems[i].src} style={projectsItems[i]}/>)
     }
 
     let styles = {
@@ -173,31 +112,29 @@ class ProjectsPath extends React.Component {
     }
 
     return (
-      <div className="contentContainer" style={styles}>
-        <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
-        <div className='projectContainer'>
+      <div className="contentContainerMobile" style={styles}>
+        <div className='projectContainerMobile'>
           {projectComponents[this.state.id]}
         </div>
-        <i class="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
       </div>
     )
   }
 }
 
-class ProjectItem extends React.Component {
+class ProjectItemMobile extends React.Component {
   render() {
     return (
-      <div className='projectItemContainer'>
-        <div className='projectViewContainer'>
-          <span className='projectTitle'>
+      <div className='projectItemContainerMobile'>
+        <div className='projectViewContainerMobile'>
+          <span className='projectTitleMobile'>
             {this.props.title}
           </span>
-          <span className='projectDescription'>
+          <span className='projectDescriptionMobile'>
             {this.props.description}
           </span>
         </div>
         <div className='imageContainer'>
-          <img style={this.props.style.styleL} className='projectImage' src={this.props.src}/>
+          <img style={this.props.style.styleL} className='projectImageMobile' src={this.props.src}/>
         </div>
       </div>
     )
@@ -342,7 +279,7 @@ class AboutMeLifePath extends React.Component {
 
 class AboutMeWorkPath extends React.Component {
   render() {
-    let resumeLink = require('./images/FilipSlatinacCV.pdf')
+    let resumeLink = require('../images/FilipSlatinacCV.pdf')
     let workViews = []
     let workObject = [
       {
@@ -472,62 +409,4 @@ class ContactPath extends React.Component {
   }
 }
 
-class Background extends React.Component {
-
-  render() {
-    return (
-      <div className='landingpage'>
-          <InformationButtonContainer/>
-          <Route exact path='/home' component={HomePath}/>
-          <Route exact path='/projects' component={ProjectsPath}/>
-          <Route exact path='/me/:type' component={MePath}/>
-          <Route exact path='/contact' component={ContactPath}/>
-          <ScrollIndicatorContainer displayScroll={this.props.displayScroll}/>
-      </div>
-    )
-  }
-}
-
-
-class ScrollIndicatorContainer extends React.Component {
-  render() {
-    return (
-      <div className={this.props.displayScroll?'scrollIndicatorContainerVisible':'scrollIndicatorContainerNotVisible'}>
-        <div className='scrollIndicatorSliderContainer' style={{display:this.props.displayScroll?'block':'none'}}>
-          <div className='scrollIndicatorSlider'></div>
-        </div>
-      </div>
-    )
-  }
-}
-
-class InformationButtonContainer extends React.Component {
-  lauchInfoAlert = () => {
-    swal({
-      'title': 'Confused ?',
-      'html': infoText,
-      'type': 'question',
-      'confirmButtonColor': '#B87FED',
-      'confirmButtonText': '<i class="fa fa-hand-peace-o"></i>',
-      'focusConfirm': false
-      // 'background': `url(${alertBG}) no-repeat center center fixed`,
-      // 'customClass': 'infoModal'
-  })
-}
-
-  render() {
-    return (
-      <div className='informationButtonContainer' style={{position: 'relative'}}>
-        <span className='informationButton' onClick={this.lauchInfoAlert}>
-          <img className='informationButtonSVG' style={{height: 25}} src={require('./images/question.svg')}/>
-        </span>
-      </div>
-    )
-  }
-}
-
-const App = <Router><PageContainer/></Router>
-ReactDOM.render(
-  App,
-  document.getElementById('root')
-);
+export {BackgroundMobile}

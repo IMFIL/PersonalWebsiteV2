@@ -28,7 +28,53 @@
   }
 }
 
-html, body {
+@keyframes glitch-anim {
+  0% {
+    clip: rect(70px, 450px, 76px, 0);
+  }
+  20% {
+    clip: rect(29px, 450px, 16px, 0);
+  }
+  40% {
+    clip: rect(76px, 450px, 3px, 0);
+  }
+  60% {
+    clip: rect(42px, 450px, 78px, 0);
+  }
+  80% {
+    clip: rect(15px, 450px, 13px, 0);
+  }
+  100% {
+    clip: rect(53px, 450px, 5px, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(70px, 450px, 76px, 0);
+  }
+  20% {
+    clip: rect(29px, 450px, 16px, 0);
+  }
+  40% {
+    clip: rect(76px, 450px, 3px, 0);
+  }
+  60% {
+    clip: rect(42px, 450px, 78px, 0);
+  }
+  80% {
+    clip: rect(15px, 450px, 13px, 0);
+  }
+  100% {
+    clip: rect(53px, 450px, 5px, 0);
+  }
+}
+
+html {
+  height: 100%;
+  margin: 0;
+}
+body {
     height: 100%;
     margin: 0;
     background: url('../images/turquoiseWay.png') no-repeat center center fixed;
@@ -459,6 +505,7 @@ html, body {
   padding: 15px 15px 0 15px;
   margin: 0;
   font-size: 19px;
+  text-align: justify;
 }
 
 .timeLineTitleAndDescriptionContainer .timeLineTitle {
@@ -636,6 +683,7 @@ html, body {
   font-family: moon;
   color: white;
   margin: 15px 0 0 0;
+  position: relative;
   -webkit-animation: neonBlue 2s ease-in-out infinite alternate;
   -moz-animation: neonBlue 2s ease-in-out infinite alternate;
   animation: neonBlue 2s ease-in-out infinite alternate;

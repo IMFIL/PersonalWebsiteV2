@@ -15,7 +15,7 @@ import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import MediaQuery from 'react-responsive';
 import Favicon from 'react-favicon';
 import {BackgroundMobile} from './utils/mobile.js'
-
+import { CSSTransitionGroup } from 'react-transition-group'
 const ReactHighcharts = require('react-highcharts')
 
 class PageContainer extends React.Component {
@@ -161,11 +161,6 @@ class ProjectsPath extends React.Component {
   }
 
   render() {
-    let projectComponents = []
-
-    for (let i = 0; i < projectsItems.length; i++) {
-      projectComponents.push(<ProjectItem title={projectsItems[i].title} description={projectsItems[i].description} src={projectsItems[i].src} style={projectsItems[i]}/>)
-    }
 
     let styles = {
       flexDirection: 'row',
@@ -176,7 +171,18 @@ class ProjectsPath extends React.Component {
       <div className="contentContainer" style={styles}>
         <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
         <div className='projectContainer'>
-          {projectComponents[this.state.id]}
+          <CSSTransitionGroup
+            transitionName="background"
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={1000}
+          >
+            <ProjectItem
+              title={projectsItems[this.state.id].title}
+              description={projectsItems[this.state.id ].description}
+              src={projectsItems[this.state.id ].src}
+              style={projectsItems[this.state.id ]}
+              />
+          </CSSTransitionGroup>
         </div>
         <i class="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
       </div>

@@ -19,13 +19,13 @@ const widthLifeUnselected = 25
 const backgroundSelected = '#25DAE3'
 const backgroundUnselected = 'grey'
 
-const projectTitles = ['Pegasus', 'pettrace', 'CookR', 'BusNow']
-const projectDescriptions = ['Interviewing made simple', 'Lost a loved one? Let us help', 'Infinite recipes at your fingertips', 'Never miss a bus again']
+const projectTitles = ['Pegasus', 'CookR', 'pettrace', 'BusNow']
+const projectDescriptions = ['Interviewing made simple', 'Infinite recipes at your fingertips', 'Lost a loved one? Let us help', 'Never miss a bus again']
 const projectSrcs = [
-  {'src': require('../images/pegasusPicture.png'), 'styleL': {width: 500, height: 500}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
-  {'src': require('../images/pLostPicture.png'), 'styleL': {width: 600, height: 400}, 'styleM': {width: 480, height: 200}, 'styleS': {width: 300, height: 200}},
-  {'src': require('../images/cookRPicture.png'), 'styleL': {width: 500, height: 500}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
-  {'src': require('../images/busNowPicture.png'), 'styleL': {width: 420, height: 350, paddingTop: 50}, 'styleM': {width: 320, height: 250, paddingTop: 30}, 'styleS': {width: 200, height: 120, paddingTop: 20} }
+  {'src': require('../images/pegasusPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
+  {'src': require('../images/cookRPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
+  {'src': require('../images/pLostPicture.png'), 'styleL': {width: 990, height: 600}, 'styleM': {width: 480, height: 200}, 'styleS': {width: 300, height: 200}},
+  {'src': require('../images/busNowPicture.png'), 'styleL': {width: 480, height: 400, paddingTop: 150}, 'styleM': {width: 320, height: 250, paddingTop: 50}, 'styleS': {width: 200, height: 120, paddingTop: 20} }
 ]
 
 class LifeEvent {

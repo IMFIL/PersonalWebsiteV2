@@ -15,7 +15,8 @@ import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import MediaQuery from 'react-responsive';
 import Favicon from 'react-favicon';
 import {BackgroundMobile} from './utils/mobile.js'
-import { CSSTransitionGroup } from 'react-transition-group'
+import Swipe from 'react-swipe-component';
+
 const ReactHighcharts = require('react-highcharts')
 
 class PageContainer extends React.Component {
@@ -74,10 +75,18 @@ class PageContainer extends React.Component {
     <div className='pageContainer'>
       <Favicon url={require('./images/favicon.png')}/>
       <MediaQuery minDeviceWidth={1030}>
-        <div className='pageContainer' onWheel={this.moveNavBar}>
-          <NavBar width={this.state.scrollingState}  currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
-          <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
-        </div>
+      <Swipe
+        mouseSwipe = {false}
+        className = 'pageContainer'
+        mouseSwipe = {true}
+        onSwipedDown = {this.collapseNavBar}
+        onSwipedUp = {this.expandNavBar}
+        >
+          <div className='pageContainer' onWheel={this.moveNavBar}>
+            <NavBar width={this.state.scrollingState}  currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
+            <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
+          </div>
+        </Swipe>
       </MediaQuery>
 
       <MediaQuery minDeviceWidth={500} maxDeviceWidth={1030}>
@@ -113,10 +122,14 @@ class NavBar extends React.Component {
 
 class NavBarItem extends React.Component {
   render () {
+    let aboutMeOthers = (this.props.currentRoute == '/me/work' || this.props.currentRoute == '/me/interests') && this.props.link == '/me/life'
+    let styles = {
+      borderLeft:  this.props.link === this.props.currentRoute || aboutMeOthers ? textShadowClicked : ''
+    }
 
     return (
       <div className='navBarItemContainer'>
-        <p className='navBarItem' style={{borderLeft:  this.props.link === this.props.currentRoute ? textShadowClicked : ''}} onClick={()=>this.props.changeRoute(this.props.link)}>
+        <p className='navBarItem' style={{...styles}} onClick={()=>this.props.changeRoute(this.props.link)}>
           <Link to={this.props.link}>
             {this.props.title}
           </Link>
@@ -148,6 +161,10 @@ class ProjectsPath extends React.Component {
     }
   }
 
+  componentWillAppear() {
+    console.log('here')
+  }
+
   frontPicture = () => {
     this.setState({
       'id': this.state.id < projectsItems.length - 1 ? this.state.id + 1 : this.state.id
@@ -162,35 +179,44 @@ class ProjectsPath extends React.Component {
 
   render() {
 
-    let styles = {
+    let rightButtonStyles = {
+      color: this.state.id < projectsItems.length - 1 ? 'white' : 'grey',
+      cursor: this.state.id < projectsItems.length - 1 ? 'pointer' : 'not-allowed'
+    }
+
+    let leftButtonStyles = {
+      color: this.state.id > 0 ? 'white' : 'grey',
+      marginRight: 100,
+      cursor: this.state.id > 0 ? 'pointer' : 'not-allowed'
+    }
+
+    let contentContainerStyles = {
       flexDirection: 'row',
       paddingTop: 0
     }
-
+// <i className="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
+// <i className="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
     return (
-      <div className="contentContainer" style={styles}>
-        <i class="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
-        <div className='projectContainer'>
-          <CSSTransitionGroup
-            transitionName="background"
-            transitionEnterTimeout={1000}
-            transitionLeaveTimeout={1000}
-          >
+      <div className="contentContainer" style={contentContainerStyles}>
+          <div className='projectContainer'>
             <ProjectItem
               title={projectsItems[this.state.id].title}
               description={projectsItems[this.state.id ].description}
               src={projectsItems[this.state.id ].src}
               style={projectsItems[this.state.id ]}
-              />
-          </CSSTransitionGroup>
-        </div>
-        <i class="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
+            />
+            <div className='chevronContainer' style={{display: 'flex'}}>
+              <i className="fa fa-chevron-left fa-2x" style={leftButtonStyles} aria-hidden="true" onClick={this.backPicture}/>
+              <i className="fa fa-chevron-right fa-2x" style={rightButtonStyles} aria-hidden="true" onClick={this.frontPicture}/>
+            </div>
+          </div>
       </div>
     )
   }
 }
 
 class ProjectItem extends React.Component {
+
   render() {
     return (
       <div className='projectItemContainer'>
@@ -364,12 +390,15 @@ class AboutMeWorkPath extends React.Component {
         job: 'Software Designer',
         tasks: 'Worked with 4 developers to abstract' +
           ' the concept of network alarms which enabled the dynamic creation of alarms upon software errors, designers at Nokia are still using this abstraction.'
+          + ' Received the maximal standing for a coop term, Exceptional.'
       },
       {
         title: 'Ciena',
         logo: '//upload.wikimedia.org/wikipedia/de/4/45/Ciena_logo.svg',
         job: 'Software Developer',
-        tasks: 'Worked with 7 full time engineers on the improvement and maintainance of the UI of Blue Planet, the tool which customers such as Telus and Vodafone use to maintain their networks.'
+        tasks: 'Worked with 7 full time engineers on the improvement and maintainance of the UI of Blue Planet, the tool which customers such as Telus'
+        + ' and Vodafone use to maintain their networks. At ther end of the term, I was nomitated as the coop student of the year as well as received the'
+        + ' maximal standing for a coop term, Exceptional.'
       }
     ]
 
@@ -466,12 +495,18 @@ class AboutMeInterestsPath extends React.Component {
 
 class ContactPath extends React.Component {
   render() {
+    let chatString = 'In the Ottawa region ?  Let\'s chat'
+
     return (
       <div className='contentContainer'>
         <div className='contactContainer'>
-          <i className="fa fa-github-square fa-5x" aria-hidden="fal"></i>
-          <i className="fa fa-linkedin-square fa-5x" aria-hidden="true"></i>
-          <i className="fa fa-envelope fa-5x" aria-hidden="true"></i>
+          <a href='https://github.com/imfil' target='_blank'><i className="fa fa-github-square fa-5x" aria-hidden="fal"></i></a>
+          <a href='https://www.linkedin.com/in/filip-slatinac-6a9a55113' target='_blank'><i className="fa fa-linkedin-square fa-5x" aria-hidden="true"></i></a>
+          <a href='mailto:filipslatinac@gmail.com?Subject=Lets%20chat' target='_top'><i className="fa fa-envelope fa-5x" aria-hidden="true"></i></a>
+        </div>
+
+        <div className='appointmentContainer'>
+          <a className='letsChatText' href='https://calendly.com/filipslatinac' target='_blank'>{chatString}</a>
         </div>
       </div>
     )

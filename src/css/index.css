@@ -247,13 +247,23 @@ body {
   transform: translateZ(0);
 }
 
-.contentContainer .contactContainer i {
+.contactContainer i {
   color: #E6E6E6;
   padding: 0 15px 0 15px;
 }
 
+.appointmentContainer .letsChatText {
+  font-family: sanFran;
+  text-decoration: none;
+  color: rgb(160, 233, 238);
+}
+
+.appointmentContainer .letsChatText:visited {
+  text-decoration: none;
+}
+
 .contentContainer .projectContainer {
-  width: 700px;
+  width: 100%;
   height: 100%;
 
   display: -ms-flexbox;
@@ -315,7 +325,7 @@ body {
 }
 
 .projectItemContainer .imageContainer {
-
+  height: 600px;
 }
 
 .projectItemContainer .projectImage {
@@ -719,19 +729,4 @@ body {
   -moz-animation: sliderWidth 2s ease-in-out infinite normal;
   animation: sliderWidth 2s ease-in-out infinite normal;
 
-}
-
-.background-enter {
-  transform: translate(100%);
-}
-.background-enter.background-enter-active {
-  transform: translate(0%);
-  transition: transform 1000ms ease-in-out;
-}
-.background-leave {
-  transform: translate(0%);
-}
-.background-leave.background-leave-active {
-  transform: translate(-100%);
-  transition: transform 1000ms ease-in-out;
 }

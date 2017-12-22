@@ -2,7 +2,7 @@ const infoText = 'If you clicked this you are most likely wondering one, or both
   '<br> <br> 1.<i>Why is his background image so pixalated ? </i> <br> 2.<i> Did he really use a template and forget to fill in' +
   ' the description ? </i> <br><br> Those two things were made so purposely. <br>Like it ? check out ' +
   '<a class="vaporwaveLink" target="_blank" href="http://aesthetic.wikia.com/wiki/Vaporwave#Imagery">Vaporwave</a>'
-const textShadowClicked = '1px white solid'
+const textShadowClicked = '1px #25DAE3 solid'
 const lifeDescriptions = [
   'The day of my birth, May 26th 1996, I was born in the city of Belgrade, Serbia.',
   'After spending a mere year in Serbia my parents took the initiative of immigrating to Canada.',
@@ -25,7 +25,7 @@ const projectSrcs = [
   {'src': require('../images/pegasusPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
   {'src': require('../images/cookRPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
   {'src': require('../images/pLostPicture.png'), 'styleL': {width: 990, height: 600}, 'styleM': {width: 480, height: 200}, 'styleS': {width: 300, height: 200}},
-  {'src': require('../images/busNowPicture.png'), 'styleL': {width: 480, height: 400, paddingTop: 150}, 'styleM': {width: 320, height: 250, paddingTop: 50}, 'styleS': {width: 200, height: 120, paddingTop: 20} }
+  {'src': require('../images/busNowPicture.png'), 'styleL': {width: 480, height: 400, paddingTop: 100}, 'styleM': {width: 320, height: 250, paddingTop: 50}, 'styleS': {width: 200, height: 120, paddingTop: 20} }
 ]
 
 class LifeEvent {

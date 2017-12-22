@@ -78,7 +78,6 @@ class PageContainer extends React.Component {
       <Swipe
         mouseSwipe = {false}
         className = 'pageContainer'
-        mouseSwipe = {true}
         onSwipedDown = {this.collapseNavBar}
         onSwipedUp = {this.expandNavBar}
         >
@@ -161,43 +160,56 @@ class ProjectsPath extends React.Component {
     }
   }
 
-  componentWillAppear() {
-    console.log('here')
-  }
-
   frontPicture = () => {
     this.setState({
-      'id': this.state.id < projectsItems.length - 1 ? this.state.id + 1 : this.state.id
+      'id': this.state.id < projectsItems.length - 1 ? this.state.id + 1 : 0
     })
   }
 
   backPicture = () => {
     this.setState({
-      'id': this.state.id > 0 ? this.state.id - 1 : this.state.id
+      'id': this.state.id > 0 ? this.state.id - 1 : projectsItems.length - 1
+    })
+  }
+
+  handleIndicatorClick = (index) => {
+    this.setState({
+      'id': index
     })
   }
 
   render() {
 
     let rightButtonStyles = {
-      color: this.state.id < projectsItems.length - 1 ? 'white' : 'grey',
-      cursor: this.state.id < projectsItems.length - 1 ? 'pointer' : 'not-allowed'
+      color: '#25DAE3',
+      marginLeft: 80,
+      cursor: 'pointer'
     }
 
     let leftButtonStyles = {
-      color: this.state.id > 0 ? 'white' : 'grey',
-      marginRight: 100,
-      cursor: this.state.id > 0 ? 'pointer' : 'not-allowed'
+      color: '#25DAE3',
+      marginRight: 80,
+      cursor: 'pointer'
     }
 
     let contentContainerStyles = {
       flexDirection: 'row',
       paddingTop: 0
     }
-// <i className="fa fa-chevron-right fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id < projectsItems.length - 1 ? 'inherit' : 'none'}}aria-hidden="true" onClick={this.frontPicture}/>
-// <i className="fa fa-chevron-left fa-2x" style={{color: 'white', cursor: 'pointer', display: this.state.id > 0 ? 'inherit' : 'none' }} aria-hidden="true" onClick={this.backPicture}/>
+
+    let circlesIndicators = []
+    let circlesIndicatorStyles = {
+      color: '#25DAE3',
+      cursor: 'pointer',
+      marginLeft: 10,
+      marginRight: 10
+    }
+
+    for (let i = 0; i < projectsItems.length; i++) {
+      circlesIndicators.push(<i className={this.state.id === i ? 'fa fa-circle' : 'fa fa-circle-thin'} style={circlesIndicatorStyles} aria-hidden="true" onClick={() => this.handleIndicatorClick(i)} />)
+    }
     return (
-      <div className="contentContainer" style={contentContainerStyles}>
+      <div className='contentContainer' style={contentContainerStyles}>
           <div className='projectContainer'>
             <ProjectItem
               title={projectsItems[this.state.id].title}
@@ -207,6 +219,9 @@ class ProjectsPath extends React.Component {
             />
             <div className='chevronContainer' style={{display: 'flex'}}>
               <i className="fa fa-chevron-left fa-2x" style={leftButtonStyles} aria-hidden="true" onClick={this.backPicture}/>
+              <div className='currentProjectIndiacatorsContainer'>
+                {circlesIndicators}
+              </div>
               <i className="fa fa-chevron-right fa-2x" style={rightButtonStyles} aria-hidden="true" onClick={this.frontPicture}/>
             </div>
           </div>
@@ -217,19 +232,46 @@ class ProjectsPath extends React.Component {
 
 class ProjectItem extends React.Component {
 
+  componentWillMount() {
+    this.setState({
+      style: this.props.style.styleL,
+      src: this.props.src,
+      className: 'imageContainerFadeIn'
+    })
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    this.setState({
+      style: this.props.style.styleL,
+      src: this.props.src,
+      className: 'imageContainerNoFade'
+    })
+    setTimeout(function() { this.setState({className: 'imageContainerFadeIn', src: nextProps.src, style: nextProps.style.styleL}); }.bind(this), 500);
+  }
+
   render() {
+
+    let dotsStyles = {
+      paddingRight: 10,
+      cursor: 'pointer',
+      color: '#25DAE3',
+      fontSize: 24,
+      paddingTop: 10,
+      paddingRight: 10
+    }
     return (
       <div className='projectItemContainer'>
         <div className='projectViewContainer'>
           <span className='projectTitle'>
+            <i className="fa fa-ellipsis-v" style={dotsStyles} aria-hidden="true"/>
             {this.props.title}
           </span>
           <span className='projectDescription'>
             {this.props.description}
           </span>
         </div>
-        <div className='imageContainer'>
-          <img style={this.props.style.styleL} className='projectImage' src={this.props.src}/>
+        <div className={this.state.className}>
+          <img style={this.state.style} className='projectImage' src={this.state.src}/>
         </div>
       </div>
     )

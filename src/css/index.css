@@ -335,6 +335,7 @@ body {
 
   align-items: center;
   justify-content: center;
+
 }
 
 .projectContainer .projectItemContainer {
@@ -381,28 +382,30 @@ body {
   color: #E6E6E6;
 }
 
-.projectItemContainer .imageContainerFadeIn {
+.projectItemContainer .imageContainer {
   height: 600px;
+  max-width: 900px;
 
-  -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0.5s; /* Firefox < 16 */
-  -ms-animation: fadein 0.5s; /* Internet Explorer */
-  -o-animation: fadein 0.5s; /* Opera < 12.1 */
-  animation: fadein 0.5s;
-}
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
 
-.projectItemContainer .imageContainerNoFade{
-  height: 600px;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
 
-  -webkit-animation: fadeout 0.7s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadeout 0.7s; /* Firefox < 16 */
-  -ms-animation: fadeout 0.7s; /* Internet Explorer */
-  -o-animation: fadeout 0.7s; /* Opera < 12.1 */
-  animation: fadeout 0.7s;
+  align-items: center;
+  justify-content: space-around;
+  overflow: hidden;
 }
 
 .projectItemContainer .projectImage {
-
+  -webkit-transition: width 1s ease-in-out;
+  -moz-transition: width 1s ease-in-out;
+  -ms-transition: width 1s ease-in-out;
+  -o-transition: width 1s ease-in-out;
+  transition: width 1s;
 }
 
 .contentContainer .aboutMeContainer {
@@ -785,9 +788,9 @@ body {
   transform: translateZ(0);
 }
 
-.scrollIndicatorContainerVisible :hover{
+/* .scrollIndicatorContainerVisible :hover{
   cursor: pointer;
-}
+} */
 
 .scrollIndicatorContainerVisible .scrollIndicatorSliderContainer {
   padding:15px 0 0 0;

@@ -181,13 +181,13 @@ class ProjectsPath extends React.Component {
   render() {
 
     let rightButtonStyles = {
-      color: '#25DAE3',
+      color: 'white',
       marginLeft: 80,
       cursor: 'pointer'
     }
 
     let leftButtonStyles = {
-      color: '#25DAE3',
+      color: 'white',
       marginRight: 80,
       cursor: 'pointer'
     }
@@ -199,7 +199,7 @@ class ProjectsPath extends React.Component {
 
     let circlesIndicators = []
     let circlesIndicatorStyles = {
-      color: '#25DAE3',
+      color: 'white',
       cursor: 'pointer',
       marginLeft: 10,
       marginRight: 10
@@ -234,19 +234,15 @@ class ProjectItem extends React.Component {
 
   componentWillMount() {
     this.setState({
-      style: this.props.style.styleL,
-      src: this.props.src,
-      className: 'imageContainerFadeIn'
+      newImageWidth: this.props.style.styleL['width']
     })
   }
 
   componentWillReceiveProps(nextProps, nextState) {
+
     this.setState({
-      style: this.props.style.styleL,
-      src: this.props.src,
-      className: 'imageContainerNoFade'
+      newImageWidth: nextProps.style.styleL['width']
     })
-    setTimeout(function() { this.setState({className: 'imageContainerFadeIn', src: nextProps.src, style: nextProps.style.styleL}); }.bind(this), 500);
   }
 
   render() {
@@ -270,9 +266,9 @@ class ProjectItem extends React.Component {
             {this.props.description}
           </span>
         </div>
-        <div className={this.state.className}>
-          <img style={this.state.style} className='projectImage' src={this.state.src}/>
-        </div>
+          <div className='imageContainer'>
+            <img style={{width: this.state.newImageWidth}} className='projectImage'  src={this.props.src}/>
+          </div>
       </div>
     )
   }

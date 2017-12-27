@@ -2,7 +2,7 @@ const infoText = 'If you clicked this you are most likely wondering one, or both
   '<br> <br> 1.<i>Why is his background image so pixalated ? </i> <br> 2.<i> Did he really use a template and forget to fill in' +
   ' the description ? </i> <br><br> Those two things were made so purposely. <br>Like it ? check out ' +
   '<a class="vaporwaveLink" target="_blank" href="http://aesthetic.wikia.com/wiki/Vaporwave#Imagery">Vaporwave</a>'
-const textShadowClicked = '1px #25DAE3 solid'
+const textShadowClicked = '1px white solid'
 const lifeDescriptions = [
   'The day of my birth, May 26th 1996, I was born in the city of Belgrade, Serbia.',
   'After spending a mere year in Serbia my parents took the initiative of immigrating to Canada.',

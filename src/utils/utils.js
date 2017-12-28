@@ -29,7 +29,7 @@ const projectFullDescription = [
   'CooKr was initially conceived for a Software Engineering class, but grew to be so much more. We utilized known user interface heuristics to make our application ' +
   'as visually appealing and easy to use as possible. This effort led to CooKr being selected as the best looking application in a class of 98 students.',
   'PetTrace was developed when my dog joined our family. In the first week of Aldo arriving to our household, he ran away. We luckily found him after a few hours, but the thought of ' +
-  'losing my pet again was terrifying. Due to a lack of online resources on how to locate lost pets, we decided to create a online platefrom where users can broadcast lost and found pets',
+  'losing my pet again was terrifying. Due to a lack of online resources on how to locate lost pets, we decided to create an online platefrom where users can broadcast lost and found pets',
   'BusNow is a pebble application which was developed due to the annoyance of having to remove winter gloves to check the bus times, instead of having to deal with the cold why not let ' +
   'pebble send your geo-location to a google API which finds the nearest bus stop and the arrival times of all the busses ?'
 ]

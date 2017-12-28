@@ -21,6 +21,17 @@ const backgroundUnselected = 'grey'
 
 const projectTitles = ['Pegasus', 'CookR', 'pettrace', 'BusNow']
 const projectDescriptions = ['Interviewing made simple', 'Infinite recipes at your fingertips', 'Lost a loved one? Let us help', 'Never miss a bus again']
+const projectTags = [['Python', 'Android', 'HTML', 'CSS'], ['Android', 'SQLLITE'], ['Meteor', 'Javascript', 'HTML', 'CSS'], ['Javascript']]
+const projectFullDescription = [
+  'Pegasus was developed due to a common frustration amongst students, the extensive overhead present while searching for interview preparation resources. ' +
+  'Pegasus enables users to seamlessly find interview resources with as little as the company name. Simply search the company name and let Pegasus do the rest while you focus on what really matters.',
+  'CooKr was initially conceived for a Software Engineering class, but grew to be so much more. We utilized known user interface heuristics to make our application ' +
+  'as visually appealing and easy to use as possible. This effort led to CooKr being selected as the best looking application in a class of 98 students.',
+  'PetTrace was developed when my dog joined our family. In the first week of Aldo arriving to our household, he ran away. We luckily found him after a few hours, but the thought of ' +
+  'losing my pet again was terrifying. Due to a lack of online resources on how to locate lost pets, we decided to create a online platefrom where users can broadcast lost and found pets',
+  'BusNow is a pebble application which was developed due to the annoyance of having to remove winter gloves to check the bus times, instead of having to deal with the cold why not let ' +
+  'pebble send your geo-location to a google API which finds the nearest bus stop and the arrival times of all the busses ?'
+]
 const projectSrcs = [
   {'src': require('../images/pegasusPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
   {'src': require('../images/cookRPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
@@ -37,13 +48,15 @@ class LifeEvent {
 }
 
 class ProjectItem {
-  constructor(title, description, src, styleL, styleM, styleS) {
+  constructor(title, description, src, styleL, styleM, styleS, tags, fullDescription) {
     this.title = title
     this.description = description
     this.src = src
-    this.styleL = styleL,
-    this.styleM = styleM,
+    this.styleL = styleL
+    this.styleM = styleM
     this.styleS = styleS
+    this.tags = tags
+    this.fullDescription = fullDescription
   }
 }
 
@@ -60,7 +73,9 @@ for(let i = 0; i < projectTitles.length; i++) {
     projectSrcs[i]['src'],
     projectSrcs[i]['styleL'],
     projectSrcs[i]['styleM'],
-    projectSrcs[i]['styleS']
+    projectSrcs[i]['styleS'],
+    projectTags[i],
+    projectFullDescription[i]
   ))
 }
 

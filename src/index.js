@@ -23,9 +23,9 @@ class PageContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      'scrollingState': window.location.pathname === '/home' ? 0 : 220,
-      'displayScroll': window.location.pathname === '/home',
-      'fixNavBar': window.location.pathname === '/home' ? false : true,
+      'scrollingState': window.location.pathname === '/' ? 0 : 220,
+      'displayScroll': window.location.pathname === '/',
+      'fixNavBar': window.location.pathname === '/' ? false : true,
       'path': window.location.pathname //disgusting but oh well
 
     }
@@ -50,7 +50,7 @@ class PageContainer extends React.Component {
   }
 
   moveNavBar = (event) => {
-    if (window.location.pathname === '/home') {
+    if (window.location.pathname === '/') {
       if (event.nativeEvent.wheelDelta < 0) {
         this.expandNavBar()
       }
@@ -63,8 +63,8 @@ class PageContainer extends React.Component {
 
   changeRoute = (route) => {
     this.setState({
-      'scrollingState': window.location.pathname === '/home' ? 0 : 220,
-      'displayScroll': window.location.pathname === '/home',
+      'scrollingState': window.location.pathname === '/' ? 0 : 220,
+      'displayScroll': window.location.pathname === '/',
       'path': route
     })
   }
@@ -110,7 +110,7 @@ class NavBar extends React.Component {
 
     return (
         <div className='navBar' style={styles}>
-          <NavBarItem title='Home' link='/home' currentRoute={this.props.currentRoute} changeRoute={this.props.changeRoute}/>
+          <NavBarItem title='Home' link='/' currentRoute={this.props.currentRoute} changeRoute={this.props.changeRoute}/>
           <NavBarItem title='Projects' link='/projects' currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
           <NavBarItem title='About Me' link='/me/life'  currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
           <NavBarItem title='Contact' link='/contact'currentRoute={this.props.currentRoute}  changeRoute={this.props.changeRoute}/>
@@ -214,8 +214,10 @@ class ProjectsPath extends React.Component {
             <ProjectItem
               title={projectsItems[this.state.id].title}
               description={projectsItems[this.state.id ].description}
-              src={projectsItems[this.state.id ].src}
-              style={projectsItems[this.state.id ]}
+              src={projectsItems[this.state.id].src}
+              style={projectsItems[this.state.id]}
+              fullDescription={projectsItems[this.state.id].fullDescription}
+              tags={projectsItems[this.state.id].tags}
             />
             <div className='chevronContainer' style={{display: 'flex'}}>
               <i className="fa fa-chevron-left fa-2x" style={leftButtonStyles} aria-hidden="true" onClick={this.backPicture}/>
@@ -247,6 +249,10 @@ class ProjectItem extends React.Component {
 
   render() {
 
+    let tags = this.props.tags.map(function(tag) {
+      return <span className='singleTagContainer'><p className='tagText'>{tag}</p></span>
+    })
+
     let dotsStyles = {
       paddingRight: 10,
       cursor: 'pointer',
@@ -259,15 +265,18 @@ class ProjectItem extends React.Component {
       <div className='projectItemContainer'>
         <div className='projectViewContainer'>
           <span className='projectTitle'>
-            <i className="fa fa-ellipsis-v" style={dotsStyles} aria-hidden="true"/>
             {this.props.title}
           </span>
           <span className='projectDescription'>
             {this.props.description}
           </span>
         </div>
-          <div className='imageContainer'>
+          <div className='descriptionContainer'>
             <img style={{width: this.state.newImageWidth}} className='projectImage'  src={this.props.src}/>
+            <div className='fullDescriptionContainer'>
+              <p className='fullDescriptionText'>{this.props.fullDescription}</p>
+              <div className='tagsContainer'>{tags}</div>
+            </div>
           </div>
       </div>
     )
@@ -557,7 +566,7 @@ class Background extends React.Component {
     return (
       <div className='landingpage'>
           <InformationButtonContainer/>
-          <Route exact path='/home' component={HomePath}/>
+          <Route exact path='/' component={HomePath}/>
           <Route exact path='/projects' component={ProjectsPath}/>
           <Route exact path='/me/:type' component={MePath}/>
           <Route exact path='/contact' component={ContactPath}/>

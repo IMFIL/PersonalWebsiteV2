@@ -382,22 +382,79 @@ body {
   color: #E6E6E6;
 }
 
-.projectItemContainer .imageContainer {
+.projectItemContainer .descriptionContainer {
   height: 600px;
-  max-width: 900px;
+  width: 900px;
 
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   -ms-flex-align: center;
   -webkit-align-items: center;
   -webkit-box-align: center;
 
   align-items: center;
-  justify-content: space-around;
-  overflow: hidden;
+  overflow-x: hidden;
+}
+
+.descriptionContainer::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.descriptionContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.descriptionContainer::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 1em;
+}
+
+.descriptionContainer .fullDescriptionContainer {
+  width: 700px;
+
+  margin-bottom: 20px;
+
+  border-radius: 1em;
+  border: 1px solid white;
+  box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF;
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+.fullDescriptionContainer .fullDescriptionText {
+  font-family: sanFran;
+  color: black;
+  font-size: 20px;
+  margin: 20px;
+}
+
+.fullDescriptionContainer .tagsContainer {
+  margin-bottom: 15px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+}
+
+.tagsContainer .singleTagContainer {
+  border-radius: 0.7em;
+  border: 1px solid white;
+  background-color: rgb(160, 233, 238);
+}
+
+.singleTagContainer .tagText {
+  font-family: sanFran;
+  font-size: 15px;
+  margin: 10px;
 }
 
 .projectItemContainer .projectImage {

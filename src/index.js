@@ -218,6 +218,7 @@ class ProjectsPath extends React.Component {
               style={projectsItems[this.state.id]}
               fullDescription={projectsItems[this.state.id].fullDescription}
               tags={projectsItems[this.state.id].tags}
+              link={projectsItems[this.state.id].link}
             />
             <div className='chevronContainer' style={{display: 'flex'}}>
               <i className="fa fa-chevron-left fa-2x" style={leftButtonStyles} aria-hidden="true" onClick={this.backPicture}/>
@@ -247,24 +248,21 @@ class ProjectItem extends React.Component {
     })
   }
 
-  render() {
+  componentDidUpdate() {
+    let descriptionContainer = document.getElementsByClassName('descriptionContainer')[0]
+    descriptionContainer.scrollTop = descriptionContainer.clientTop
+  }
 
+  render() {
     let tags = this.props.tags.map(function(tag) {
       return <span className='singleTagContainer'><p className='tagText'>{tag}</p></span>
     })
 
-    let dotsStyles = {
-      paddingRight: 10,
-      cursor: 'pointer',
-      color: '#25DAE3',
-      fontSize: 24,
-      paddingTop: 10,
-      paddingRight: 10
-    }
     return (
       <div className='projectItemContainer'>
         <div className='projectViewContainer'>
           <span className='projectTitle'>
+            <a className='gitHubTitleLink' href={this.props.link} target='_blank'><i className="fa fa-github" aria-hidden="fal"></i></a>
             {this.props.title}
           </span>
           <span className='projectDescription'>

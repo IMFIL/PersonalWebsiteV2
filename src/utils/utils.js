@@ -22,6 +22,7 @@ const backgroundUnselected = 'grey'
 const projectTitles = ['Pegasus', 'CookR', 'pettrace', 'BusNow']
 const projectDescriptions = ['Interviewing made simple', 'Infinite recipes at your fingertips', 'Lost a loved one? Let us help', 'Never miss a bus again']
 const projectTags = [['Python', 'Android', 'HTML', 'CSS'], ['Android', 'SQLLITE'], ['Meteor', 'Javascript', 'HTML', 'CSS'], ['Javascript']]
+const projectLinks = ['https://github.com/IMFIL/Pegasus', 'https://github.com/IMFIL/cookR', 'https://github.com/IMFIL/petTrace', 'https://github.com/IMFIL/BusNow']
 const projectFullDescription = [
   'Pegasus was developed due to a common frustration amongst students, the extensive overhead present while searching for interview preparation resources. ' +
   'Pegasus enables users to seamlessly find interview resources with as little as the company name. Simply search the company name and let Pegasus do the rest while you focus on what really matters.',
@@ -48,7 +49,7 @@ class LifeEvent {
 }
 
 class ProjectItem {
-  constructor(title, description, src, styleL, styleM, styleS, tags, fullDescription) {
+  constructor(title, description, src, styleL, styleM, styleS, tags, fullDescription, link) {
     this.title = title
     this.description = description
     this.src = src
@@ -57,6 +58,7 @@ class ProjectItem {
     this.styleS = styleS
     this.tags = tags
     this.fullDescription = fullDescription
+    this.link = link
   }
 }
 
@@ -75,7 +77,8 @@ for(let i = 0; i < projectTitles.length; i++) {
     projectSrcs[i]['styleM'],
     projectSrcs[i]['styleS'],
     projectTags[i],
-    projectFullDescription[i]
+    projectFullDescription[i],
+    projectLinks[i]
   ))
 }
 

@@ -216,6 +216,16 @@ class ProjectItem extends React.Component {
     mobileDescriptionContainer.scrollTop = mobileDescriptionContainer.clientTop
   }
 
+  launchDescriptiveAlert = () => {
+    swal({
+      'title': this.props.title,
+      'text': this.props.fullDescription,
+      'confirmButtonColor': '#B87FED',
+      'confirmButtonText': 'OK',
+      'focusConfirm': false
+  })
+}
+
   render() {
     let tags = this.props.tags.map(function(tag) {
       return <span className='singleTagContainer'><p className='tagText'>{tag}</p></span>
@@ -227,6 +237,7 @@ class ProjectItem extends React.Component {
           <span className='projectTitle'>
             <a className='gitHubTitleLink' href={this.props.link} target='_blank'><i className="fa fa-github" aria-hidden="fal"></i></a>
             {this.props.title}
+            <i className="fa fa-question-circle moreInfoTitleLink" aria-hidden="true" onClick={this.launchDescriptiveAlert}/>
           </span>
           <span className='projectDescription'>
             {this.props.description}

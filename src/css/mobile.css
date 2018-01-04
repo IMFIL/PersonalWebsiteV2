@@ -59,6 +59,17 @@
   padding: 10px 0 10px 0;
 }
 
+.navBarElement a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0 10px 0 10px;
+}
+
+.navBarElement a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
 .splashContainerMobile .nameDisplayMobile {
   font-size: 40px;
   font-family: moon;
@@ -258,6 +269,317 @@
   -ms-transition: width 1s ease-in-out;
   -o-transition: width 1s ease-in-out;
   transition: width 1s;
+}
+
+.splashContainerMobile .mobileAboutMeContainer {
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: .5em;
+  border: 1px solid white;
+
+  -webkit-box-shadow: 0px 0px 5px 6px grey;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    0px 0px 5px 6px grey;  /* Firefox 3.5 - 3.6 */
+  box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF;
+
+
+  background-color: rgba(255, 255, 255, 0.96);
+}
+.splashContainerMobile .mobileAboutMeDisplayScreen {
+  height: calc(100% - 80px);
+  width: 100%;
+  overflow-y: auto;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.splashContainerMobile .mobileAboutMeFolderNavBar {
+  width: 100%;
+  height: 35px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+
+  align-items: center;
+
+}
+
+.mobileAboutMeFolderNavBar .mobileAboutMeFolderitemContainer {
+  width: 33.33%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+}
+
+.mobileAboutMeFolderitemContainer .mobileFolderitem {
+  color: black;
+  font-family: sanFran;
+  font-size: 15px;
+  margin: 0;
+}
+
+.mobileFolderitem a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.mobileFolderitem a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.mobileAboutMeLifePath {
+  width: 100%;
+  height: fit-content;
+}
+
+.mobileAboutMeLifePath .mobileTimeLineContainer {
+  margin: 0 0 60px 0;
+  height: 75px;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileAboutMeLifePath .mobileTimeLineTitleAndDescriptionContainer {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileTimeLineTitleAndDescriptionContainer .mobileTimeLineDescription {
+  font-family: sanFran;
+  width: fit-content;
+  height: 50px;
+  padding: 15px 15px 0 15px;
+  margin: 0;
+  font-size: 12px;
+  text-align: justify;
+}
+
+.mobileTimeLineTitleAndDescriptionContainer .mobileTimeLineTitle {
+  font-family: sanFran;
+  font-size: 15px;
+  width: fit-content;
+  height: 20px;
+  padding: 15px 15px 15px 15px;
+  margin: 0;
+}
+
+.mobileTimeLineContainer .mobileTimeLineYearContainer {
+  width:auto;
+  height:auto;
+}
+
+.mobileTimeLineYearContainer .mobileTimeLineYear {
+  font-family: sanFran;
+  font-size: 9px;
+}
+
+.mobileTimeLineYearContainer .mobileTimeLineElementContainer {
+  width: fit-content;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileTimeLineElementContainer .mobileTimeLineElement {
+  cursor: pointer;
+
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+
+  transition: width 0.5s, height 0.5s;
+
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.mobileTimeLineContainer .mobileTimeLineLine {
+  width: 15px;
+  height:1px;
+}
+
+.splashContainerMobile .mobileAboutMeWorkPath {
+  display: inherit;
+  flex-direction: column;
+  height: calc(100% - 50px);
+  width:inherit;
+}
+
+.mobileAboutMeWorkPath .mobileResumeLinkContainer {
+  margin: 20px 0 0 0;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileResumeLinkContainer .mobileResumeLinkText {
+  font-family: sanFran;
+  font-size: 12px;
+}
+
+.mobileResumeLinkText .mobileResumeLinkText {
+  text-decoration: none;
+  color:rgb(37, 218, 227);
+}
+
+.mobileAboutMeWorkPath .mobileWorkContainer {
+  width: 100%;
+  height: 500px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.mobileWorkContainer .mobileWorkImage {
+  border-radius: 0.5em;
+  width: 50px;
+  height: 50px;
+}
+
+.mobileWorkContainer .mobileWorkTypeContainer {
+  width: 150px;
+  height: 120px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.mobileWorkTypeContainer .mobileCompanyNameText {
+  font-family: sanFran;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.mobileWorkTypeContainer .companyJobText {
+  font-family: sanFran;
+  font-size: 12px;
+}
+
+.mobileWorkContainer .mobileWorkTaskContainer {
+  width: 300px;
+  height: 120px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: justify;
+
+}
+
+.mobileWorkTaskContainer .mobileCompanyTaskContainer {
+  font-family: sanFran;
+  font-size: 12px;
+}
+
+.mobileAboutMeDisplayScreen .highcharts-title {
+  font-family: sanFran;
+  font-size: 27px !important;
+}
+
+.mobileAboutMeDisplayScreen .highcharts-background {
+  fill: transparent;
+}
+
+.mobileAboutMeDisplayScreen .highcharts-credits {
+  display: none;
+}
+
+.mobileAboutMeDisplayScreen .highcharts-label {
+  font-family: sanFran;
+  font-size: 17px !important;
 }
 
 .slide-pane__header {

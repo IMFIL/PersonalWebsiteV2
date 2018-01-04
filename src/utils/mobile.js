@@ -30,6 +30,7 @@ class BackgroundMobile extends React.Component {
         <NavigationBarContainerMobile/>
         <Route exact path='/' component={HomePageMobile}/>
         <Route exact path='/projects' component={ProjectsPath}/>
+        <Route exact path='/me/:type' component={MePath}/>
       </div>
     )
   }
@@ -81,15 +82,27 @@ closeModal() {
           width='200px'
           onRequestClose={ () => this.setState({ modalIsOpen: false }) }>
           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center'}}>
-            <span className='navBarElement'>Home</span>
-            <span className='navBarElement'>Projects</span>
-            <span className='navBarElement'>About Me</span>
-            <span className='navBarElement'>Contact</span>
-            <span className='navBarElement'>Info</span>
+            <span className='navBarElement' onClick={ () => this.setState({ modalIsOpen: false }) }>
+              <Link to='/'>
+                Home
+              </Link>
+            </span>
+            <span className='navBarElement' onClick={ () => this.setState({ modalIsOpen: false }) }>
+              <Link to='/projects'>
+                Projects
+              </Link>
+            </span>
+            <span className='navBarElement' onClick={ () => this.setState({ modalIsOpen: false }) }>
+              <Link to='/me/life'>
+                About Me
+              </Link>
+            </span>
+            <span className='navBarElement' onClick={ () => this.setState({ modalIsOpen: false }) }>Contact</span>
+            <span className='navBarElement' onClick={this.lauchInfoAlert}>Info</span>
           </div>
       </SlidingPane>
         <span className='navButton' onClick={this.expandNavBar}>
-          <i class="fa fa-bars" aria-hidden="true" style={{color: 'white'}}></i>
+          <i className="fa fa-bars" aria-hidden="true" style={{color: 'white'}}></i>
         </span>
       </div>
     )
@@ -256,8 +269,8 @@ class ProjectItem extends React.Component {
 class MePath extends React.Component {
   render() {
     return (
-      <div className='contentContainer'>
-        <div className='aboutMeContainer'>
+      <div className='splashContainerMobile'>
+        <div className='mobileAboutMeContainer'>
           <AboutMeFolderNavBar/>
           <AboutMeDisplayScreen/>
         </div>
@@ -269,7 +282,7 @@ class MePath extends React.Component {
 class AboutMeFolderNavBar extends React.Component {
   render() {
     return (
-      <div className='aboutMeFolderNavBar'>
+      <div className='mobileAboutMeFolderNavBar'>
         <AboutMeFolderitem title='Life' link='life'/>
         <AboutMeFolderitem title='Work' link='work'/>
         <AboutMeFolderitem title='Interests' link='interests'/>
@@ -286,8 +299,8 @@ class AboutMeFolderitem extends React.Component {
     }
 
     return (
-      <div className='aboutMeFolderitemContainer' style={borderStyle}>
-        <p className='folderitem' style={{color: this.props.title.toLowerCase() === window.location.pathname.substring(4) ? '#25DAE3': 'black'}}>
+      <div className='mobileAboutMeFolderitemContainer' style={borderStyle}>
+        <p className='mobileFolderitem' style={{color: this.props.title.toLowerCase() === window.location.pathname.substring(4) ? '#25DAE3': 'black'}}>
           <Link to={this.props.link}>
             {this.props.title}
           </Link>
@@ -300,7 +313,7 @@ class AboutMeFolderitem extends React.Component {
 class AboutMeDisplayScreen extends React.Component {
   render() {
     return (
-      <div className='aboutMeDisplayScreen'>
+      <div className='mobileAboutMeDisplayScreen'>
           <Route exact path={'/me/life'} component={AboutMeLifePath}/>
           <Route exact path={'/me/work'} component={AboutMeWorkPath}/>
           <Route exact path={'/me/interests'} component={AboutMeInterestsPath}/>
@@ -313,7 +326,7 @@ class AboutMeDisplayScreen extends React.Component {
 class TimeLineElement extends React.Component {
   render() {
     return (
-      <span className='timeLineElement' style={calculateLifeEventSizeAndBackground(this.props.id, this.props.currentLifeElement)} onClick={()=>this.props.onClick(this.props.id)}/>
+      <span className='mobileTimeLineElement' style={calculateLifeEventSizeAndBackground(this.props.id, this.props.currentLifeElement, false, true)} onClick={()=>this.props.onClick(this.props.id)}/>
     )
   }
 }
@@ -321,7 +334,7 @@ class TimeLineElement extends React.Component {
 class TimeLineLine extends React.Component {
   render() {
     return (
-      <span className='timeLineLine' style={calculateLifeEventSizeAndBackground(this.props.id, this.props.currentLifeElement - 1, true)}/>
+      <span className='mobileTimeLineLine' style={calculateLifeEventSizeAndBackground(this.props.id, this.props.currentLifeElement - 1, true, true)}/>
     )
   }
 }
@@ -347,11 +360,11 @@ class AboutMeLifePath extends React.Component {
     for (let i = 0; i < LETLA.length; i++) {
       if(i !== LETLA.length - 1) {
         timeLine.push(
-          <div className='timeLineYearContainer'>
-            <p className='timeLineYear'>
+          <div className='mobileTimeLineYearContainer'>
+            <p className='mobileTimeLineYear'>
               {LETLA[i].year}
             </p>
-            <div className='timeLineElementContainer'>
+            <div className='mobileTimeLineElementContainer'>
               <TimeLineElement content={LETLA[i]} id={i} onClick={this.onClickLifeElement.bind(this)} currentLifeElement={this.state.currentLifeElement}/>
               <TimeLineLine id={i} currentLifeElement={this.state.currentLifeElement}/>
             </div>
@@ -360,11 +373,11 @@ class AboutMeLifePath extends React.Component {
       }
       else {
        timeLine.push(
-         <div className='timeLineYearContainer'>
-           <p className='timeLineYear'>
+         <div className='mobileTimeLineYearContainer'>
+           <p className='mobileTimeLineYear'>
              {LETLA[i].year}
            </p>
-           <div className='timeLineElementContainer'>
+           <div className='mobileTimeLineElementContainer'>
              <TimeLineElement content={LETLA[i]} id={i} onClick={this.onClickLifeElement.bind(this)} currentLifeElement={this.state.currentLifeElement}/>
            </div>
          </div>
@@ -372,15 +385,15 @@ class AboutMeLifePath extends React.Component {
       }
     }
     return (
-      <div className='aboutMeLifePath'>
-        <div className='timeLineContainer'>
+      <div className='mobileAboutMeLifePath'>
+        <div className='mobileTimeLineContainer'>
           {timeLine}
         </div>
-        <div className='timeLineTitleAndDescriptionContainer'>
-          <p className='timeLineTitle'>
+        <div className='mobileTimeLineTitleAndDescriptionContainer'>
+          <p className='mobileTimeLineTitle'>
             {LETLA[this.state.currentLifeElement].title}
           </p>
-          <p className='timeLineDescription'>
+          <p className='mobileTimeLineDescription'>
             {LETLA[this.state.currentLifeElement].description}
           </p>
         </div>
@@ -418,10 +431,10 @@ class AboutMeWorkPath extends React.Component {
 
     for (let i = 0;i<workObject.length;i++) {
       workViews.push(
-        <div className='workContainer'>
-          <img className='workImage' src={workObject[i].logo}/>
-          <div className='workTypeContainer'>
-            <span className='companyNameText'>
+        <div className='mobileWorkContainer'>
+          <img className='mobileWorkImage' src={workObject[i].logo}/>
+          <div className='mobileWorkTypeContainer'>
+            <span className='mobileCompanyNameText'>
               {workObject[i].title}
             </span>
 
@@ -429,8 +442,8 @@ class AboutMeWorkPath extends React.Component {
               {workObject[i].job}
             </span>
           </div>
-          <div className='workTaskContainer'>
-            <div className='companyTaskContainer'>
+          <div className='mobileWorkTaskContainer'>
+            <div className='mobileCompanyTaskContainer'>
               {workObject[i].tasks}
             </div>
           </div>
@@ -438,11 +451,11 @@ class AboutMeWorkPath extends React.Component {
       )
     }
     return (
-      <div className='aboutMeWorkPath'>
+      <div className='mobileAboutMeWorkPath'>
         {workViews}
-        <div className='resumeLinkContainer'>
-          <span className='resumeLinkText'>
-            Take a look at my full <a className='resumeLink' href={resumeLink} target='_blank'>resume</a>
+        <div className='mobileResumeLinkContainer'>
+          <span className='mobileResumeLinkText'>
+            Take a look at my full <a className='mobileResumeLinkText' href={resumeLink} target='_blank'>resume</a>
           </span>
         </div>
       </div>
@@ -510,7 +523,7 @@ class AboutMeInterestsPath extends React.Component {
 class ContactPath extends React.Component {
   render() {
     return (
-      <div className='contentContainer'>
+      <div className='splashContainerMobile'>
         <div className='contactContainer'>
           <i className="fa fa-github-square fa-5x" aria-hidden="fal"></i>
           <i className="fa fa-linkedin-square fa-5x" aria-hidden="true"></i>

@@ -14,12 +14,12 @@ const lifeDescriptions = [
 ]
 const lifeYears = [1996, 1997, 2007, 2013, 2015, 2018]
 const lifeTitles = ['Birth', 'Canada', 'High School', 'Hello World', 'University', 'Present']
-const widthLifeSelected = 40
-const widthLifeUnselected = 25
+let widthLifeSelected = 40
+let widthLifeUnselected = 25
 const backgroundSelected = '#25DAE3'
 const backgroundUnselected = 'grey'
 
-const projectTitles = ['Pegasus', 'CookR', 'pettrace', 'BusNow']
+const projectTitles = ['Pegasus', 'CookR', 'PetTrace', 'BusNow']
 const projectDescriptions = ['Interviewing made simple', 'Infinite recipes at your fingertips', 'Lost a loved one? Let us help', 'Never miss a bus again']
 const projectTags = [['Python', 'Android', 'HTML', 'CSS'], ['Android', 'SQLLITE'], ['Meteor', 'Javascript', 'HTML', 'CSS'], ['Javascript']]
 const projectLinks = ['https://github.com/IMFIL/Pegasus', 'https://github.com/IMFIL/cookR', 'https://github.com/IMFIL/petTrace', 'https://github.com/IMFIL/BusNow']
@@ -82,10 +82,17 @@ for(let i = 0; i < projectTitles.length; i++) {
   ))
 }
 
-function calculateLifeEventSizeAndBackground(currentId, id, isLine = false) {
+function calculateLifeEventSizeAndBackground(currentId, id, isLine = false, isMobile) {
   let widthVar
   let heightVar
   let backgroundVar
+  let lineWidth = 35
+
+  if (isMobile) {
+    widthLifeUnselected = 10
+    widthLifeSelected = 20
+    lineWidth = 15
+  }
 
   if (id > currentId) {
     if (!isLine) {
@@ -112,7 +119,7 @@ function calculateLifeEventSizeAndBackground(currentId, id, isLine = false) {
   }
 
   let styling = {
-    width: widthVar ? widthVar : 35,
+    width: widthVar ? widthVar : lineWidth,
     height: heightVar ? heightVar : 1,
     backgroundColor: backgroundVar
   }

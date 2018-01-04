@@ -17,10 +17,6 @@
   }
 }
 
-.mobileBGSetter {
-  background: url('../images/turquoiseWay.png') no-repeat center center fixed;
-}
-
 .landingpageMobile {
   height: 100%;
   width: 100%;
@@ -41,22 +37,26 @@
 
   align-items: center;
   justify-content: center;
-
-  background: url('../images/turquoiseWay.png') no-repeat center center fixed;
 }
 
 .landingpageMobile .navigationBarContainerMobile {
-  height: 25px;
+  height: 20px;
   width: 100%;
   position: relative;
   bottom: 0;
-  background: grey;
+  background: transparent;
 }
 
-.navigationBarContainerMobile .informationButtonMobile {
+.navigationBarContainerMobile .navButton {
   position: absolute;
-  padding: 5px 5px 0 0;
-  right: 0;
+  padding: 5px 0 0 5px;
+}
+
+.navBarElement {
+  font-family: sanFran;
+  color: grey;
+  font-size: 18px;
+  padding: 10px 0 10px 0;
 }
 
 .splashContainerMobile .nameDisplayMobile {
@@ -75,4 +75,189 @@
   color: #E6E6E6;
   text-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF;
   margin: 0 0 0 0;
+}
+
+.splashContainerMobile .mobileProjectContainer {
+  width: 100%;
+  height: 100%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+
+}
+
+.mobileProjectContainer .mobileItemProjectContainer {
+  width: 100%;
+  min-height: calc(100%/4);
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mobileItemProjectContainer .projectViewContainer {
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.projectViewContainer .projectTitle {
+  font-family: moon;
+  font-size: 25px;
+  color: #E6E6E6;
+}
+
+.projectTitle .gitHubTitleLink {
+  font-size: 25px;
+  padding-right: 10px;
+  text-decoration: none;
+  color: rgb(54, 218, 226)
+}
+
+.projectTitle .gitHubTitleLink:visited {
+  text-decoration: none;
+  color: rgb(54, 218, 226)
+}
+
+.mobileItemProjectContainer .projectDescription {
+  font-family: sanFran;
+  font-size: 15px;
+  color: #E6E6E6;
+}
+
+.mobileItemProjectContainer .mobileDescriptionContainer {
+  height: 100%;
+  width:100%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.mobileDescriptionContainer::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.mobileDescriptionContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.mobileDescriptionContainer::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 1em;
+}
+
+.mobileDescriptionContainer .imageHolderContainer {
+  min-height: 400px;
+
+  padding-bottom: 20px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileDescriptionContainer .fullDescriptionContainer {
+
+  margin-bottom: 20px;
+
+  border-radius: 1em;
+  border: 1px solid white;
+  box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #fff, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF;
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+.fullDescriptionContainer .fullDescriptionText {
+  font-family: sanFran;
+  color: black;
+  font-size: 15px;
+  margin: 15px;
+}
+
+.fullDescriptionContainer .tagsContainer {
+  margin-bottom: 15px;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+}
+
+.tagsContainer .singleTagContainer {
+  border-radius: 0.7em;
+  border: 1px solid white;
+  background-color: rgb(160, 233, 238);
+}
+
+.singleTagContainer .tagText {
+  font-family: sanFran;
+  font-size: 10px;
+  margin: 10px;
+}
+
+.mobileItemProjectContainer .projectImage {
+  padding-bottom: 25px;
+
+  -webkit-transition: width 1s ease-in-out;
+  -moz-transition: width 1s ease-in-out;
+  -ms-transition: width 1s ease-in-out;
+  -o-transition: width 1s ease-in-out;
+  transition: width 1s;
+}
+
+.slide-pane__header {
+  display: none;
+}
+
+.slide-pane__content {
+  display: flex;
+  justify-content: center;
 }

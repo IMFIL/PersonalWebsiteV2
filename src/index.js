@@ -237,14 +237,17 @@ class ProjectItem extends React.Component {
 
   componentWillMount() {
     this.setState({
-      newImageWidth: this.props.style.styleL['width']
+      newImageWidth: this.props.style.styleL['width'],
+      newImageHeight: this.props.style.styleL['height']
+
     })
   }
 
   componentWillReceiveProps(nextProps, nextState) {
 
     this.setState({
-      newImageWidth: nextProps.style.styleL['width']
+      newImageWidth: nextProps.style.styleL['width'],
+      newImageHeight: nextProps.style.styleL['height']
     })
   }
 
@@ -270,7 +273,9 @@ class ProjectItem extends React.Component {
           </span>
         </div>
           <div className='descriptionContainer'>
-            <img style={{width: this.state.newImageWidth}} className='projectImage'  src={this.props.src}/>
+            <div className='imageHolderContainer'>
+              <img style={{width: this.state.newImageWidth}} className='projectImage'  src={this.props.src}/>
+            </div>
             <div className='fullDescriptionContainer'>
               <p className='fullDescriptionText'>{this.props.fullDescription}</p>
               <div className='tagsContainer'>{tags}</div>

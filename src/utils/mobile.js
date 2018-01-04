@@ -1,6 +1,8 @@
+import 'react-sliding-pane/dist/react-sliding-pane.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'font-awesome/css/font-awesome.min.css';
 import Swipe from 'react-swipe-component';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import styles from '../css/mobile.css'
@@ -12,6 +14,7 @@ import {
   projectsItems
 } from './utils.js'
 import swal from 'sweetalert2';
+import SlidingPane from 'react-sliding-pane';
 
 const ReactHighcharts = require('react-highcharts')
 
@@ -21,24 +24,27 @@ const ReactHighcharts = require('react-highcharts')
 
 class BackgroundMobile extends React.Component {
 
-  componentDidMount() {
-    document.body.classList.toggle('mobileBGSetter', true)
-  }
-
-  componentWillUnmount() {
-    document.body.classList.remove('mobileBGSetter')
-  }
   render () {
     return (
       <div className='landingpageMobile'>
         <NavigationBarContainerMobile/>
-        <HomePageMobile/>
+        <Route exact path='/' component={HomePageMobile}/>
+        <Route exact path='/projects' component={ProjectsPath}/>
       </div>
     )
   }
 }
 
 class NavigationBarContainerMobile extends React.Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      modalIsOpen: false
+    }
+  }
+
   lauchInfoAlert = () => {
     swal({
       'title': 'Confused ?',
@@ -52,11 +58,38 @@ class NavigationBarContainerMobile extends React.Component {
   })
 }
 
+expandNavBar = () => {
+  this.setState({
+    modalIsOpen: !this.state.modalIsOpen
+  })
+}
+
+openModal() {
+  this.setState({modalIsOpen: true});
+}
+
+closeModal() {
+  this.setState({modalIsOpen: false});
+}
+
   render() {
     return (
       <div className='navigationBarContainerMobile' style={{position: 'relative'}}>
-        <span className='informationButtonMobile' onClick={this.lauchInfoAlert}>
-          <img className='informationButtonSVGMobile' style={{height: 17}} src={require('../images/question.svg')}/>
+      <SlidingPane
+          isOpen={ this.state.modalIsOpen }
+          from='left'
+          width='200px'
+          onRequestClose={ () => this.setState({ modalIsOpen: false }) }>
+          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center'}}>
+            <span className='navBarElement'>Home</span>
+            <span className='navBarElement'>Projects</span>
+            <span className='navBarElement'>About Me</span>
+            <span className='navBarElement'>Contact</span>
+            <span className='navBarElement'>Info</span>
+          </div>
+      </SlidingPane>
+        <span className='navButton' onClick={this.expandNavBar}>
+          <i class="fa fa-bars" aria-hidden="true" style={{color: 'white'}}></i>
         </span>
       </div>
     )
@@ -64,9 +97,6 @@ class NavigationBarContainerMobile extends React.Component {
 }
 class HomePageMobile extends React.Component {
   render () {
-    // let styles = {
-    //  'wi'
-    // }
     return (
       <div className='splashContainerMobile'>
         <p className='nameDisplayMobile'>Filip Slatinac</p>
@@ -78,7 +108,7 @@ class HomePageMobile extends React.Component {
   }
 }
 
-class ProjectsPathMobile extends React.Component {
+class ProjectsPath extends React.Component {
 
   constructor(props) {
     super(props)
@@ -89,53 +119,124 @@ class ProjectsPathMobile extends React.Component {
 
   frontPicture = () => {
     this.setState({
-      'id': this.state.id < projectsItems.length - 1 ? this.state.id + 1 : this.state.id
+      'id': this.state.id < projectsItems.length - 1 ? this.state.id + 1 : 0
     })
   }
 
   backPicture = () => {
     this.setState({
-      'id': this.state.id > 0 ? this.state.id - 1 : this.state.id
+      'id': this.state.id > 0 ? this.state.id - 1 : projectsItems.length - 1
+    })
+  }
+
+  handleIndicatorClick = (index) => {
+    this.setState({
+      'id': index
     })
   }
 
   render() {
-    let projectComponents = []
 
-    for (let i = 0; i < projectsItems.length; i++) {
-      projectComponents.push(<ProjectItemMobile title={projectsItems[i].title} description={projectsItems[i].description} src={projectsItems[i].src} style={projectsItems[i]}/>)
+    let rightButtonStyles = {
+      color: 'white',
+      fontSize: 25,
+      marginLeft: 40,
+      cursor: 'pointer'
     }
 
-    let styles = {
+    let leftButtonStyles = {
+      color: 'white',
+      fontSize: 25,
+      marginRight: 40,
+      cursor: 'pointer'
+    }
+
+    let contentContainerStyles = {
       flexDirection: 'row',
       paddingTop: 0
     }
 
+    let circlesIndicators = []
+    let circlesIndicatorStyles = {
+      color: 'white',
+      cursor: 'pointer',
+      fontSize: 15,
+      marginLeft: 7,
+      marginRight: 7
+    }
+
+    for (let i = 0; i < projectsItems.length; i++) {
+      circlesIndicators.push(<i className={this.state.id === i ? 'fa fa-circle' : 'fa fa-circle-thin'} style={circlesIndicatorStyles} aria-hidden="true" onClick={() => this.handleIndicatorClick(i)} />)
+    }
     return (
-      <div className="contentContainerMobile" style={styles}>
-        <div className='projectContainerMobile'>
-          {projectComponents[this.state.id]}
-        </div>
+      <div className='splashContainerMobile' style={contentContainerStyles}>
+          <div className='mobileProjectContainer'>
+            <ProjectItem
+              title={projectsItems[this.state.id].title}
+              description={projectsItems[this.state.id ].description}
+              src={projectsItems[this.state.id].src}
+              style={projectsItems[this.state.id]}
+              fullDescription={projectsItems[this.state.id].fullDescription}
+              tags={projectsItems[this.state.id].tags}
+              link={projectsItems[this.state.id].link}
+            />
+            <div className='chevronContainer' style={{display: 'flex'}}>
+              <i className="fa fa-chevron-left" style={leftButtonStyles} aria-hidden="true" onClick={this.backPicture}/>
+              <div className='currentProjectIndiacatorsContainer'>
+                {circlesIndicators}
+              </div>
+              <i className="fa fa-chevron-right fa" style={rightButtonStyles} aria-hidden="true" onClick={this.frontPicture}/>
+            </div>
+          </div>
       </div>
     )
   }
 }
 
-class ProjectItemMobile extends React.Component {
+class ProjectItem extends React.Component {
+
+  componentWillMount() {
+    this.setState({
+      newImageWidth: this.props.style.styleM['width'],
+      newImageHeight: this.props.style.styleM['height']
+
+    })
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+
+    this.setState({
+      newImageWidth: nextProps.style.styleM['width'],
+      newImageHeight: nextProps.style.styleM['height']
+    })
+  }
+
+  componentDidUpdate() {
+    let mobileDescriptionContainer = document.getElementsByClassName('mobileDescriptionContainer')[0]
+    mobileDescriptionContainer.scrollTop = mobileDescriptionContainer.clientTop
+  }
+
   render() {
+    let tags = this.props.tags.map(function(tag) {
+      return <span className='singleTagContainer'><p className='tagText'>{tag}</p></span>
+    })
+
     return (
-      <div className='projectItemContainerMobile'>
-        <div className='projectViewContainerMobile'>
-          <span className='projectTitleMobile'>
+      <div className='mobileItemProjectContainer'>
+        <div className='projectViewContainer'>
+          <span className='projectTitle'>
+            <a className='gitHubTitleLink' href={this.props.link} target='_blank'><i className="fa fa-github" aria-hidden="fal"></i></a>
             {this.props.title}
           </span>
-          <span className='projectDescriptionMobile'>
+          <span className='projectDescription'>
             {this.props.description}
           </span>
         </div>
-        <div className='imageContainer'>
-          <img style={this.props.style.styleL} className='projectImageMobile' src={this.props.src}/>
-        </div>
+          <div className='mobileDescriptionContainer'>
+            <div className='imageHolderContainer'>
+              <img style={{width: this.state.newImageWidth}} className='projectImage'  src={this.props.src}/>
+            </div>
+          </div>
       </div>
     )
   }

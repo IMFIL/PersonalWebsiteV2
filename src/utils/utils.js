@@ -29,15 +29,15 @@ const projectFullDescription = [
   'CooKr was initially conceived for a Software Engineering class, but grew to be so much more. We utilized known user interface heuristics to make our application ' +
   'as visually appealing and easy to use as possible. This effort led to CooKr being selected as the best looking application in a class of 98 students.',
   'PetTrace was developed when my dog joined our family. In the first week of Aldo arriving to our household, he ran away. We luckily found him after a few hours, but the thought of ' +
-  'losing my pet again was terrifying. Due to a lack of online resources on how to locate lost pets, we decided to create an online platefrom where users can broadcast lost and found pets',
+  'losing my pet again was terrifying. Due to a lack of online resources on how to locate lost pets, we decided to create an online platefrom where users can broadcast lost and found animals.',
   'BusNow is a pebble application which was developed due to the annoyance of having to remove winter gloves to check the bus times, instead of having to deal with the cold why not let ' +
   'pebble send your geo-location to a google API which finds the nearest bus stop and the arrival times of all the busses ?'
 ]
 const projectSrcs = [
   {'src': require('../images/pegasusPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
   {'src': require('../images/cookRPicture.png'), 'styleL': {width: 600, height: 600}, 'styleM': {width: 400, height: 400}, 'styleS': {width: 300, height: 300}},
-  {'src': require('../images/pLostPicture.png'), 'styleL': {width: 990, height: 600}, 'styleM': {width: 480, height: 200}, 'styleS': {width: 300, height: 200}},
-  {'src': require('../images/busNowPicture.png'), 'styleL': {width: 480, height: 400, paddingTop: 100}, 'styleM': {width: 320, height: 250, paddingTop: 50}, 'styleS': {width: 200, height: 120, paddingTop: 20} }
+  {'src': require('../images/pLostPicture.png'), 'styleL': {width: 990, height: 600}, 'styleM': {width: 330, height: 200}, 'styleS': {width: 300, height: 200}},
+  {'src': require('../images/busNowPicture.png'), 'styleL': {width: 480, height: 400, paddingTop: 100}, 'styleM': {width: 300, height: 250, paddingTop: 50}, 'styleS': {width: 200, height: 120, paddingTop: 20} }
 ]
 
 class LifeEvent {

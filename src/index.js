@@ -88,7 +88,7 @@ class PageContainer extends React.Component {
         </Swipe>
       </MediaQuery>
 
-      <MediaQuery minDeviceWidth={500} maxDeviceWidth={1030}>
+      <MediaQuery minDeviceWidth={501} maxDeviceWidth={1030}>
         <Router><BackgroundMobile/></Router>
       </MediaQuery>
 

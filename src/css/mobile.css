@@ -529,7 +529,7 @@
   border-radius: 0.5em;
   width: 70px;
   height: 70px;
-  margin:20px;
+  margin:10px;
 }
 
 .mobileWorkContainer .mobileWorkTypeContainer {
@@ -560,6 +560,7 @@
   display: -webkit-flex;
   display: flex;
   flex-direction: column;
+  margin:10px;
 }
 
 .mobileJobDetailsContainer .mobileCompanyNameText {
@@ -583,7 +584,7 @@
 
   text-align: justify;
 
-  margin: 20px;
+  margin: 10px 20px 0 20px;
 
 }
 

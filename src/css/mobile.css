@@ -511,7 +511,7 @@
 
 .mobileAboutMeWorkPath .mobileWorkContainer {
   height:300px;
-  
+
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
@@ -594,7 +594,7 @@
 
 .mobileAboutMeDisplayScreen .highcharts-title {
   font-family: sanFran;
-  font-size: 27px !important;
+  font-size: 15px !important;
 }
 
 .mobileAboutMeDisplayScreen .highcharts-background {
@@ -607,7 +607,7 @@
 
 .mobileAboutMeDisplayScreen .highcharts-label {
   font-family: sanFran;
-  font-size: 17px !important;
+  font-size: 12px !important;
 }
 
 .slide-pane__header {

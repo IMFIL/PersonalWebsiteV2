@@ -31,6 +31,7 @@ class BackgroundMobile extends React.Component {
         <Route exact path='/' component={HomePageMobile}/>
         <Route exact path='/projects' component={ProjectsPath}/>
         <Route exact path='/me/:type' component={MePath}/>
+        <Route exact path='/contact' component={ContactPath}/>
       </div>
     )
   }
@@ -97,7 +98,11 @@ closeModal() {
                 About Me
               </Link>
             </span>
-            <span className='navBarElement' onClick={ () => this.setState({ modalIsOpen: false }) }>Contact</span>
+            <span className='navBarElement' onClick={ () => this.setState({ modalIsOpen: false }) }>
+            <Link to='/Contact'>
+              Contact
+            </Link>
+            </span>
             <span className='navBarElement' onClick={this.lauchInfoAlert}>Info</span>
           </div>
       </SlidingPane>
@@ -587,12 +592,18 @@ class AboutMeInterestsPath extends React.Component {
 
 class ContactPath extends React.Component {
   render() {
+    let chatString = 'In the Ottawa region ?  Let\'s chat'
+
     return (
-      <div className='splashContainerMobile'>
+      <div className='contentContainer'>
         <div className='contactContainer'>
-          <i className="fa fa-github-square fa-5x" aria-hidden="fal"></i>
-          <i className="fa fa-linkedin-square fa-5x" aria-hidden="true"></i>
-          <i className="fa fa-envelope fa-5x" aria-hidden="true"></i>
+          <a href='https://github.com/imfil' target='_blank'><i className="fa fa-github-square fa-5x" aria-hidden="fal"></i></a>
+          <a href='https://www.linkedin.com/in/filip-slatinac-6a9a55113' target='_blank'><i className="fa fa-linkedin-square fa-5x" aria-hidden="true"></i></a>
+          <a href='mailto:filipslatinac@gmail.com?Subject=Lets%20chat' target='_top'><i className="fa fa-envelope fa-5x" aria-hidden="true"></i></a>
+        </div>
+
+        <div className='appointmentContainer'>
+          <a className='letsChatText' href='https://calendly.com/filipslatinac' target='_blank'>{chatString}</a>
         </div>
       </div>
     )

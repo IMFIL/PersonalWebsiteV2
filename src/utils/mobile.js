@@ -240,9 +240,6 @@ class ProjectItem extends React.Component {
 }
 
   render() {
-    let tags = this.props.tags.map(function(tag) {
-      return <span className='singleTagContainer'><p className='tagText'>{tag}</p></span>
-    })
 
     return (
       <div className='mobileItemProjectContainer'>
@@ -403,6 +400,32 @@ class AboutMeLifePath extends React.Component {
 }
 
 class AboutMeWorkPath extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      'currentWorkId': 0
+    }
+  }
+
+  frontPicture = () => {
+    this.setState({
+      'currentWorkId': this.state.currentWorkId < 2 ? this.state.currentWorkId + 1 : 0
+    })
+  }
+
+  backPicture = () => {
+    this.setState({
+      'currentWorkId': this.state.currentWorkId > 0 ? this.state.currentWorkId - 1 : 2
+    })
+  }
+
+  handleIndicatorClick = (index) => {
+    this.setState({
+      'currentWorkId': index
+    })
+  }
+
   render() {
     let resumeLink = require('../images/FilipSlatinacCV.pdf')
     let workViews = []
@@ -429,18 +452,53 @@ class AboutMeWorkPath extends React.Component {
       }
     ]
 
+    let rightButtonStyles = {
+      color: 'grey',
+      fontSize: 25,
+      marginLeft: 40,
+      cursor: 'pointer'
+    }
+
+    let leftButtonStyles = {
+      color: 'grey',
+      fontSize: 25,
+      marginRight: 40,
+      cursor: 'pointer'
+    }
+
+    let contentContainerStyles = {
+      flexDirection: 'row',
+      paddingTop: 0
+    }
+
+    let circlesIndicators = []
+    let circlesIndicatorStyles = {
+      color: 'grey',
+      cursor: 'pointer',
+      fontSize: 15,
+      marginLeft: 7,
+      marginRight: 7
+    }
+
+    for (let i = 0; i < workObject.length; i++) {
+      circlesIndicators.push(<i className={this.state.currentWorkId === i ? 'fa fa-circle' : 'fa fa-circle-thin'} style={circlesIndicatorStyles} aria-hidden="true" onClick={() => this.handleIndicatorClick(i)} />)
+    }
+
     for (let i = 0;i<workObject.length;i++) {
       workViews.push(
         <div className='mobileWorkContainer'>
-          <img className='mobileWorkImage' src={workObject[i].logo}/>
           <div className='mobileWorkTypeContainer'>
-            <span className='mobileCompanyNameText'>
-              {workObject[i].title}
-            </span>
-
-            <span className='companyJobText'>
-              {workObject[i].job}
-            </span>
+            <div className='mobileCompanyNameTextContainer'>
+              <img className='mobileWorkImage' src={workObject[i].logo}/>
+              <div className='mobileJobDetailsContainer'>
+                <span className='mobileCompanyNameText'>
+                  {workObject[i].title}
+                </span>
+                <span className='companyJobText'>
+                  {workObject[i].job}
+                </span>
+              </div>
+            </div>
           </div>
           <div className='mobileWorkTaskContainer'>
             <div className='mobileCompanyTaskContainer'>
@@ -452,7 +510,14 @@ class AboutMeWorkPath extends React.Component {
     }
     return (
       <div className='mobileAboutMeWorkPath'>
-        {workViews}
+        {workViews[this.state.currentWorkId]}
+        <div className='chevronContainer' style={{display: 'flex', paddingTop: 50}}>
+          <i className="fa fa-chevron-left" style={leftButtonStyles} aria-hidden="true" onClick={this.backPicture}/>
+          <div className='currentProjectIndiacatorsContainer'>
+            {circlesIndicators}
+          </div>
+          <i className="fa fa-chevron-right fa" style={rightButtonStyles} aria-hidden="true" onClick={this.frontPicture}/>
+        </div>
         <div className='mobileResumeLinkContainer'>
           <span className='mobileResumeLinkText'>
             Take a look at my full <a className='mobileResumeLinkText' href={resumeLink} target='_blank'>resume</a>

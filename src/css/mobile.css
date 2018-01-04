@@ -510,7 +510,7 @@
 }
 
 .mobileAboutMeWorkPath .mobileWorkContainer {
-  min-height:300px;
+  min-height: 250px;
 
   display: -ms-flexbox;
   display: -webkit-flex;

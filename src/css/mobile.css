@@ -272,8 +272,8 @@
 }
 
 .splashContainerMobile .mobileAboutMeContainer {
-  width: calc(100% - 100px);
-  height: calc(100% - 100px);
+  width: calc(100% - 50px);
+  height: calc(100% - 30px);
 
   display: -ms-flexbox;
   display: -webkit-flex;

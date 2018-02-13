@@ -863,7 +863,7 @@ body {
   -o-transform: translateZ(0);
   transform: translateZ(0);
 }
-
+/*
 .scrollIndicatorContainerNotVisible {
   width:0;
   height:0;
@@ -875,15 +875,15 @@ body {
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
-}
+} */
 
 /* .scrollIndicatorContainerVisible :hover{
   cursor: pointer;
 } */
 
-.scrollIndicatorContainerVisible .scrollIndicatorSliderContainer {
+/* .scrollIndicatorContainerVisible .scrollIndicatorSliderContainer {
   padding:15px 0 0 0;
-  width: 40px;
+  width: 70px;
   height: 2px;
 }
 
@@ -893,5 +893,10 @@ body {
   -webkit-animation: sliderWidth 2s ease-in-out infinite normal;
   -moz-animation: sliderWidth 2s ease-in-out infinite normal;
   animation: sliderWidth 2s ease-in-out infinite normal;
+} */
 
+.scrollIndicatorContainerVisible .clickAnywhereText {
+  color: #E6E6E6;
+  font-size: 12px;
+  font-family: sanFran;
 }

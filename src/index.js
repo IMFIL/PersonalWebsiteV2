@@ -51,11 +51,11 @@ class PageContainer extends React.Component {
 
   moveNavBar = (event) => {
     if (window.location.pathname === '/') {
-      if (event.nativeEvent.wheelDelta < 0) {
+      if (this.state.displayScroll) {
         this.expandNavBar()
       }
 
-      else if ( event.nativeEvent.wheelDelta >= 0) {
+      else if (!this.state.displayScroll) {
         this.collapseNavBar()
       }
     }
@@ -81,9 +81,9 @@ class PageContainer extends React.Component {
         onSwipedDown = {this.collapseNavBar}
         onSwipedUp = {this.expandNavBar}
         >
-          <div className='pageContainer' onWheel={this.moveNavBar}>
+          <div className='pageContainer' >
             <NavBar width={this.state.scrollingState}  currentRoute={this.state.path} changeRoute={this.changeRoute.bind(this)}/>
-            <Background displayScroll={this.state.displayScroll} clickEvent={this.expandNavBar.bind(this)}/>
+            <Background displayScroll={this.state.displayScroll} clickEvent={this.moveNavBar.bind(this)}/>
           </div>
         </Swipe>
       </MediaQuery>
@@ -140,8 +140,9 @@ class NavBarItem extends React.Component {
 
 class HomePath extends React.Component {
   render() {
+    console.log(this.props)
     return (
-      <div className='contentContainer'>
+      <div className='contentContainer' onClick={this.props.clickEvent}>
         <p className='nameDisplay'>Filip Slatinac</p>
         <p className='displayAttributes'>
           - Insert Typical Software Engineering Student Desicription Here -
@@ -569,7 +570,7 @@ class Background extends React.Component {
     return (
       <div className='landingpage'>
           <InformationButtonContainer/>
-          <Route exact path='/' component={HomePath}/>
+          <Route exact path='/' render={(props) => <HomePath {...props} clickEvent={this.props.clickEvent} />}/>
           <Route exact path='/projects' component={ProjectsPath}/>
           <Route exact path='/me/:type' component={MePath}/>
           <Route exact path='/contact' component={ContactPath}/>
@@ -583,10 +584,8 @@ class Background extends React.Component {
 class ScrollIndicatorContainer extends React.Component {
   render() {
     return (
-      <div className={this.props.displayScroll?'scrollIndicatorContainerVisible':'scrollIndicatorContainerNotVisible'}>
-        <div className='scrollIndicatorSliderContainer' style={{display:this.props.displayScroll?'block':'none'}}>
-          <div className='scrollIndicatorSlider'></div>
-        </div>
+      <div className='scrollIndicatorContainerVisible'>
+          <p className='clickAnywhereText'>{this.props.displayScroll?'Click anywhere to open menu':'Click anywhere to close menu'}</p>
       </div>
     )
   }

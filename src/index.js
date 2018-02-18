@@ -585,7 +585,7 @@ class ScrollIndicatorContainer extends React.Component {
   render() {
     return (
       <div className='scrollIndicatorContainerVisible'>
-          <p className='clickAnywhereText'>{this.props.displayScroll?'Click anywhere to open menu':'Click anywhere to close menu'}</p>
+          <p className='clickAnywhereText' style={{'display': this.props.displayScroll?'':'none'}}>Click anywhere to open menu</p>
       </div>
     )
   }

@@ -145,7 +145,7 @@ class HomePath extends React.Component {
       <div className='contentContainer' onClick={this.props.clickEvent}>
         <p className='nameDisplay'>Filip Slatinac</p>
         <p className='displayAttributes'>
-          - Insert Typical Software Engineering Student Desicription Here -
+          Pressure Makes A Pearl
         </p>
       </div>
     )
